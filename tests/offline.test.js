@@ -1,5 +1,5 @@
 // Checks the offline copy (sw.js): shop photos are kept after the first load and served when the network fails, the app's own files always come from
-// the network first, and anything else is left alone. Run from the mock-prototype folder: node tests/offline.test.js
+// the network first, and anything else is left alone. Run from the repo root: node tests/offline.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

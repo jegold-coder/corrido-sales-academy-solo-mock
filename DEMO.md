@@ -1,6 +1,6 @@
 # Demo script: 6 minutes
 
-For showing the Corrido Sales Academy mock to the team or the class. It uses **Presenter mode**, which loads a sample player so every page has something on it. Your own progress is kept safe and comes back when you leave.
+For showing the Corrido Sales Academy prototype to the team or the class. It uses **Presenter mode**, which loads a sample player so every page has something on it. Your own progress is kept safe and comes back when you leave.
 
 ## Before you start (one minute)
 

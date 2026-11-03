@@ -1,5 +1,5 @@
 // Checks that every hairstyle is attached to every head shape: the hair cap always covers the band between the face and its outline, and the marks
-// on the hair (parting, shine, cornrow lines) are cut off at the head. Run from the mock-prototype folder: node tests/hair.test.js
+// on the hair (parting, shine, cornrow lines) are cut off at the head. Run from the repo root: node tests/hair.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const html = require("./page").source();   // index.html with the page's own scripts back in place
 let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL ") + n + (x ? " " + x : "")); if (!c) fails++; };

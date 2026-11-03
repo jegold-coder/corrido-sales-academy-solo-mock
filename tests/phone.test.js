@@ -1,4 +1,4 @@
-// Checks the phone bottom bar is wired up and stays out of the way. Run from the mock-prototype folder: node tests/phone.test.js
+// Checks the phone bottom bar is wired up and stays out of the way. Run from the repo root: node tests/phone.test.js
 const fs = require("fs"), path = require("path");
 const html = require("./page").source();   // index.html with the page's own scripts back in place
 let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL ") + n + (x ? " " + x : "")); if (!c) fails++; };

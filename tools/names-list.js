@@ -1,5 +1,5 @@
 "use strict";
-// Reads and edits the name list in names.js, which is stored in base64 so the words are not in plain text in the repo. Run from the mock-prototype folder:
+// Reads and edits the name list in names.js, which is stored in base64 so the words are not in plain text in the repo. Run from the repo root:
 //   node tools/names-list.js                 print the list (a line starting with = only counts as a whole word)
 //   node tools/names-list.js add <word>...   add words, letters a to z only; write =word for a whole-word entry
 //   node tools/names-list.js remove <word>...  take words out

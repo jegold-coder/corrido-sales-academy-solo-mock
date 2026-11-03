@@ -1,6 +1,6 @@
 // Checks the character's name check (names.js): the word list is stored encoded, every word on it is refused (also in capitals, with repeated letters, with
 // look-alike symbols, spaced out and with accents), ordinary names that only contain part of a word are fine, and the creator, the sign-in and loading all use it.
-// The test builds its bad names from the list itself, so no offensive word is written out in this file. Run from the mock-prototype folder: node tests/names.test.js
+// The test builds its bad names from the list itself, so no offensive word is written out in this file. Run from the repo root: node tests/names.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path"), os = require("os"), cp = require("child_process");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

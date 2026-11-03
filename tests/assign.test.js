@@ -1,5 +1,5 @@
 // Checks assignments: a manager picks a stop, who it is for and a due date; the sample reps' progress against it is worked out from the sample data; the rep sees one slim
-// line on the map until it is done; and nothing a manager types can inject markup. Run from the mock-prototype folder: node tests/assign.test.js
+// line on the map until it is done; and nothing a manager types can inject markup. Run from the repo root: node tests/assign.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

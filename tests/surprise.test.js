@@ -1,6 +1,6 @@
 // Checks the surprise customer: ten curveball questions in five kinds, each with a right answer the real coach scores high and wrong answers it scores low, a tone and
 // a customer; a round is one of each kind; and the mission screen handles a curveball (a shorter timer, a silent customer, a note about it).
-// Run from the mock-prototype folder: node tests/surprise.test.js
+// Run from the repo root: node tests/surprise.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

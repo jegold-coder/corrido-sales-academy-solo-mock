@@ -1,6 +1,6 @@
 // Checks the usability fixes: each ladder has its own word (Rank for XP, Tier for bosses, Easy to Expert for difficulty), the Record button stays pinned on a phone, the map opens
 // on the next stop, the camera reminder shows once and can be switched off, feedback shows what to fix first and folds the rest, and photos have a placeholder.
-// Run from the mock-prototype folder: node tests/usability.test.js
+// Run from the repo root: node tests/usability.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

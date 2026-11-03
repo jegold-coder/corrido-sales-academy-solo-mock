@@ -1,5 +1,5 @@
 // The game's scripts share one global scope, so two files declaring the same top-level name stops the second file loading
-// (that is how a clash once broke the voices). Run from the mock-prototype folder: node tests/globals.test.js
+// (that is how a clash once broke the voices). Run from the repo root: node tests/globals.test.js
 const fs = require("fs"), path = require("path");
 const root = path.join(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");

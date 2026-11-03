@@ -1,4 +1,4 @@
-// Checks coach mode, the Hint button, and the second version of every question. Run from the mock-prototype folder: node tests/learning.test.js
+// Checks coach mode, the Hint button, and the second version of every question. Run from the repo root: node tests/learning.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

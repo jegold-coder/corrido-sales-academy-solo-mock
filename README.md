@@ -1,17 +1,11 @@
-# Corrido Sales Academy (solo mock)
+# Tequila Corrido Sales Academy
 
-A playable mock of the "AI Sales Training Coach" from the CIS 591 project brief, built to give the team ideas.
-It is **not** the team's build, it is **not** in GitHub, and nothing in it is approved by Tequila Corrido.
-No input from Ken yet, so every script, rubric rule and score is a labeled draft.
+A playable prototype of the "AI Sales Training Coach" from the CIS 591 project brief: a game that trains new sales reps on the brand and on selling it.
+Nothing in it is approved by Tequila Corrido yet. No input from Ken yet, so every script, rubric rule and score is a labeled draft.
 
-## Run it
+## Live site
 
-```bash
-cd "mock-prototype"
-python3 -m http.server 8766
-```
-
-Open http://localhost:8766/ (it needs a local server, not a double-click on `index.html`).
+https://corrido-sales-academy-mock.vercel.app (it updates from `main` on every push). It is a static site: classic script files and no build step.
 
 ## It is free
 
@@ -27,7 +21,7 @@ What it loads from the internet:
 
 ## What it covers from the brief
 
-| Brief | In the mock |
+| Brief | In the prototype |
 |---|---|
 | Personas with hidden objections | 13 missions, each customer hides a worry that is revealed on the scorecard |
 | Behavioral chat | Spoken sales-script conversations: the customer talks, you answer out loud (or type), your avatar plays your answer back in your own recorded voice with its mouth moving with the sound, and the customer replies to what you said |
@@ -98,7 +92,7 @@ The sign-in screen has a Google button, but Google only allows it once the app h
 
 1. Go to [console.cloud.google.com](https://console.cloud.google.com) and create a project (any name).
 2. Open **APIs & Services > OAuth consent screen** (or **Google Auth Platform**). Choose **External**, name the app "Tequila Corrido Sales Academy", add your email as the support contact, and keep the default scopes (openid, email, profile). While the app is in **Testing**, add the Google accounts that should be able to sign in under **Test users**.
-3. Open **APIs & Services > Credentials > Create credentials > OAuth client ID**, choose **Web application**, and under **Authorized JavaScript origins** add `http://localhost:8766` and `https://corrido-sales-academy-mock.vercel.app` (the address only, no slash at the end and no path). No redirect address is needed.
+3. Open **APIs & Services > Credentials > Create credentials > OAuth client ID**, choose **Web application**, and under **Authorized JavaScript origins** add `https://corrido-sales-academy-mock.vercel.app` (the address only, no slash at the end and no path). No redirect address is needed.
 4. Copy the client ID (it ends in `.apps.googleusercontent.com`). Either paste it into `googleClientId` in `config.js` (on for everyone once pushed), or paste it into **Dashboard > Settings > Account** (this device only, handy for trying it). Reload the page and the Google button appears.
 
 Optional: set `googleDomain` in `config.js` (for example `"tequilacorrido.com"`) to let only that company's Google accounts in.
@@ -149,7 +143,7 @@ Open the link ending in `#manager`, use the "Manager? Open the manager view" lin
 | `icons.js` | `ic(name)`: the drawn icons (sound, hearts, mic) that replace emoji, so they look the same on every device (streak, XP and merch stay emoji); the shapes are the sprite at the top of `index.html` |
 | `presenter.js` | presenter mode: the sample player, the jump menu, and safe switching in and out |
 | `avatarcheck.js` | the Presenter menu's Avatar check sheets: every shirt, or every hairstyle on every head shape, on one page |
-| `vercel.json`, `robots.txt` | the deploy settings: the mock is kept out of search engines, safe response headers, and a one-day cache for the scripts (they carry `?v=` versions, so bump it when a script changes) |
+| `vercel.json`, `robots.txt` | the deploy settings: the site is kept out of search engines, safe response headers, and a one-day cache for the scripts (they carry `?v=` versions, so bump it when a script changes) |
 | `sw.js` | the offline copy: the app and the shop photos are kept on the device after one visit, so a demo works on bad Wi-Fi |
 | `tools/` | `smoke.js` clicks through the whole game in a real Chrome and fails on any error (`node tools/smoke.js`); `cdp.js` is the tiny Chrome client it uses. No installs |
 | `DEMO.md` | a 6-minute demo script that uses Presenter mode |
@@ -227,21 +221,7 @@ The unit tests need only Node. `node tools/smoke.js` is a separate click-through
 5. Replace hotlinked images with approved assets.
 6. Split work by skill: personas and prompts, rubric and grading, front end and gamification, voice and camera, content and QA.
 
-## Design tools (approved for this solo mock)
-
-Five free, MIT-licensed outside tools are installed for the mock's design and quality work, in a local `.claude/` folder that is not part of this repo (the push leaves it out). They are reference material and skills for the AI assistant; nothing in the game's code depends on them.
-
-| Tool | What was installed |
-|---|---|
-| [UI UX Pro Max skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | The `ui-ux-pro-max` skill only (its search script, style data and references). The repo's other bundled skills (brand, slides, design-system and so on) were left out. |
-| [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md) | The 84 company design guides, kept as reference only. Tequila Corrido keeps its own look and does not copy another brand's. |
-| [Emil Kowalski's skills](https://github.com/attentiondotnet/emilkowalski_skills) | Four skills copied as plain files: `emil-design-eng`, `review-animations`, `animation-vocabulary`, `apple-design`. |
-| [Taste skill](https://github.com/Leonxlnx/taste-skill) | The `design-taste-frontend` skill. Its scripts need Node 22 or newer and Chrome, and its photo search sends only the search words to open image collections. |
-| [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) (Addy Osmani) | Six skills copied as plain files: `accessibility`, `performance`, `core-web-vitals`, `best-practices`, `seo` and `web-quality-audit`. Its one script, `analyze.sh`, only reads HTML files and prints what it finds (it needs `jq`); nothing in it touches the network or writes a file. |
-
-Each was cloned, read and scanned for network calls and commands before it was copied. None was installed with `npx`, a plugin command or an install script.
-
-## Questions for Ken (nothing here blocks the mock)
+## Questions for Ken (nothing here blocks the prototype)
 
 - Who are the typical customers, and which settings matter most (bars, restaurants, retail, distributors)?
 - What does a good pitch look like, and what are the top mistakes new reps make?

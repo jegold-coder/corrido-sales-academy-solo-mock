@@ -1,5 +1,5 @@
 // Checks the first run, "Try this question again", the 60-second review (the Who is Tequila Corrido? page) and its calculator, time estimates.
-// Run from the mock-prototype folder: node tests/callcard.test.js
+// Run from the repo root: node tests/callcard.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

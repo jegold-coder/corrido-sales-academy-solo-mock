@@ -1,6 +1,6 @@
 // Checks the answer log and the manager pages built on it: answers are kept (words only), the sample class has real scored answers made the same way every time,
 // "the question the class misses most" is worked out right, a manager's note reaches the rep, and the spreadsheets are safe and complete.
-// Run from the mock-prototype folder: node tests/answers.test.js
+// Run from the repo root: node tests/answers.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

@@ -1,5 +1,5 @@
 // Checks the Presenter menu's avatar check sheets: one picture per shirt, or per hairstyle and head shape, drawn in its own frame, and the player's avatar put back
-// afterwards. Run from the mock-prototype folder: node tests/avatarcheck.test.js
+// afterwards. Run from the repo root: node tests/avatarcheck.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

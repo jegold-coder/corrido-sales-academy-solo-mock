@@ -1,5 +1,5 @@
 // Checks presenter mode: the sample player is consistent, real progress always comes back, and it is wired in without skipping the age check.
-// Run from the mock-prototype folder: node tests/presenter.test.js
+// Run from the repo root: node tests/presenter.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

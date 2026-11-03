@@ -1,5 +1,5 @@
 // Checks the Brand Brain boss gives stars for its score instead of always one, and that a better replay raises them.
-// Run from the mock-prototype folder: node tests/bossstars.test.js
+// Run from the repo root: node tests/bossstars.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

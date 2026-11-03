@@ -1,5 +1,5 @@
 // Checks the Skills chart on the dashboard: every skill belongs to one family, the radar has few enough axes that no label overlaps another,
-// and every individual skill is still listed. Run from the mock-prototype folder: node tests/skills.test.js
+// and every individual skill is still listed. Run from the repo root: node tests/skills.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

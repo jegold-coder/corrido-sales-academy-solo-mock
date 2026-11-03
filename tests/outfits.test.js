@@ -1,7 +1,7 @@
 // Checks how some outfits are drawn on the avatar. The shirts whose photo sleeves splay out sideways (Mas Tequila, Classic, Delivery, Smuggler, Worth the Shot, the
 // Era tees, the Pickleball Raglan): the body comes from the photo and the sleeves are drawn over the arms, as cap sleeves for a man (shaped like the Tequila On My Mind
 // tee) and as a boxier sleeve for a woman. The polos: the skin behind the V stays inside the V. Every photo shirt: no neck skin beside the collar.
-// Run from the mock-prototype folder: node tests/outfits.test.js
+// Run from the repo root: node tests/outfits.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const html = require("./page").source();   // index.html with the page's own scripts back in place
 let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL ") + n + (x ? " " + x : "")); if (!c) fails++; };

@@ -1,4 +1,4 @@
-// Checks the upgraded map and the dashboard ladder and radar. Run from the mock-prototype folder: node tests/map.test.js
+// Checks the upgraded map and the dashboard ladder and radar. Run from the repo root: node tests/map.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

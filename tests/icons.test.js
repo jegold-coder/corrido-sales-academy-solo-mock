@@ -1,5 +1,5 @@
 // Checks the drawn icons: every icon a screen asks for is in the sprite, the stat and toggle icons are not emoji any more, and the Presenter button sits in the footer bar.
-// Run from the mock-prototype folder: node tests/icons.test.js
+// Run from the repo root: node tests/icons.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

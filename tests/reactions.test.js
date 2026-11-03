@@ -1,4 +1,4 @@
-// Checks the customer's reactions and the grader page. Run from the mock-prototype folder: node tests/reactions.test.js
+// Checks the customer's reactions and the grader page. Run from the repo root: node tests/reactions.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

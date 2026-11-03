@@ -1,5 +1,5 @@
 // Checks Brand facts: a manager changes the public prices and the wording of the 60-second review without touching code, and the whole game follows (missions, lessons,
-// scoring rules, the review, "Did you know?"), every change can be undone exactly, and bad input is refused. Run from the mock-prototype folder: node tests/facts.test.js
+// scoring rules, the review, "Did you know?"), every change can be undone exactly, and bad input is refused. Run from the repo root: node tests/facts.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

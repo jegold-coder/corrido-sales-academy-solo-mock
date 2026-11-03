@@ -1,5 +1,5 @@
 // Checks the rubric scoring: every model answer should score high, every weak example should score clearly lower.
-// Run from the mock-prototype folder:  node tests/scoring.test.js
+// Run from the repo root:  node tests/scoring.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const ctx = vm.createContext({ console });

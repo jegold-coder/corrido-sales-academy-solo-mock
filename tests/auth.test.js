@@ -1,4 +1,4 @@
-// Checks the Google sign-in token handling with made-up tokens. Run from the mock-prototype folder: node tests/auth.test.js
+// Checks the Google sign-in token handling with made-up tokens. Run from the repo root: node tests/auth.test.js
 const { checkGoogleToken, decodeJwt } = require("../auth.js");
 let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL ") + n + (x ? " " + x : "")); if (!c) fails++; };
 const b64 = o => Buffer.from(JSON.stringify(o), "utf8").toString("base64url");

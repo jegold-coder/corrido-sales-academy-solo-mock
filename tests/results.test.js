@@ -1,4 +1,4 @@
-// Checks the results screens and the footer hearts. Run from the mock-prototype folder: node tests/results.test.js
+// Checks the results screens and the footer hearts. Run from the repo root: node tests/results.test.js
 const fs = require("fs"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

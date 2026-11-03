@@ -1,5 +1,5 @@
 // Checks the accessibility fixes: text colours that pass WCAG AA, page headings, keyboard focus, tap size and small text.
-// Run from the mock-prototype folder: node tests/a11y.test.js
+// Run from the repo root: node tests/a11y.test.js
 const fs = require("fs"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

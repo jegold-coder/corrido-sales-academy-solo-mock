@@ -1,5 +1,5 @@
 // Scores answers written in ordinary words (not copied from the examples) and tricky ones, to catch a grader that only likes the
-// exact wording it was written against. Run from the mock-prototype folder: node tests/natural.test.js
+// exact wording it was written against. Run from the repo root: node tests/natural.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const ctx = vm.createContext({ console, state: { done: {}, proto: {} } });

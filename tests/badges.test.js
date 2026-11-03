@@ -1,5 +1,5 @@
 // Checks the boss badges: one per boss, a real medal for each, awarded once, and caught up from progress already made.
-// Run from the mock-prototype folder: node tests/badges.test.js
+// Run from the repo root: node tests/badges.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const html = require("./page").source();   // index.html with the page's own scripts back in place

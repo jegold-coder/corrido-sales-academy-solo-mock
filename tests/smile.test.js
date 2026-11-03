@@ -1,5 +1,5 @@
 // Checks the rep's smile styles: the shapes, the creator row, saving, and that the mouth still moves while talking.
-// Run from the mock-prototype folder: node tests/smile.test.js
+// Run from the repo root: node tests/smile.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const html = require("./page").source(), boss = fs.readFileSync(path.join(root, "boss.js"), "utf8");

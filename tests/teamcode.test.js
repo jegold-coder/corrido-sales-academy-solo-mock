@@ -1,5 +1,5 @@
 // Checks the team board's share codes: short, readable back exactly, a typo is caught, nonsense and forged values are refused, and codes from the first version still work.
-// Run from the mock-prototype folder: node tests/teamcode.test.js
+// Run from the repo root: node tests/teamcode.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");

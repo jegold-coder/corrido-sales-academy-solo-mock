@@ -1,4 +1,4 @@
-// Checks how customers are given voices and how a line is broken up to be spoken. Run from the mock-prototype folder: node tests/voices.test.js
+// Checks how customers are given voices and how a line is broken up to be spoken. Run from the repo root: node tests/voices.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const V = require(path.join(__dirname, "..", "voices.js"));
 const ctx = vm.createContext({ console });

@@ -1,4 +1,4 @@
-// Checks the tier, boss and merch data line up. Run from the mock-prototype folder: node tests/tiers.test.js
+// Checks the tier, boss and merch data line up. Run from the repo root: node tests/tiers.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const ctx = vm.createContext({ console, state: { done: {}, proto: {} } });

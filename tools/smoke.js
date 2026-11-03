@@ -1,6 +1,6 @@
 "use strict";
 // A click-through smoke test: it opens the game in a real (windowless) Chrome, plays through the first run, visits every page the Presenter menu can reach,
-// draws every shirt and hairstyle, and checks the offline copy. It fails on any error in the page. Run from the mock-prototype folder:  node tools/smoke.js
+// draws every shirt and hairstyle, and checks the offline copy. It fails on any error in the page. Run from the repo root:  node tools/smoke.js
 // It needs Chrome (set CHROME if it is not in the usual place) and an internet connection for the shop photos; it installs nothing.
 const http = require("http"), fs = require("fs"), path = require("path");
 const { launch, sleep } = require("./cdp.js");

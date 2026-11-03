@@ -1,5 +1,5 @@
 // Checks the manager Coaching page: every skill maps to a topic, the stop it suggests is real and within the rep's reach, and the messages read well.
-// Run from the mock-prototype folder: node tests/coaching.test.js
+// Run from the repo root: node tests/coaching.test.js
 const fs = require("fs"), vm = require("vm"), path = require("path");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");
