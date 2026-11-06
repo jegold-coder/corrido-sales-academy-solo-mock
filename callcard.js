@@ -29,6 +29,21 @@ const CallCard = (() => {
     ["“Is it good for you?”", "No health claims. Additive-free, three ingredients, no fake flavors."],
     ["“We don't want it.”", "Don't argue. Ask who their shoppers are and suggest a tiny test."],
   ];
+  // More replies from the sales guide. The manager can't reword these (facts.js edits the first six), so they stay fixed.
+  const MORE = [
+    ["“Never heard of Corrido.”", "That's why you're here first. Offer a tasting for them and their staff."],
+    ["“Nobody's asking for it.”", "New brands get found at the shelf. Offer a staff tasting to start the talk."],
+    ["“I have no shelf space.”", "Offer a small, dated test. Don't ask for a big order."],
+    ["“Tequila's too crowded.”", "Agree. Corrido is additive-free with a story. Offer a side-by-side taste."],
+  ];
+  // The five buyer types from the sales guide: [who, what they care about, how to win them].
+  const BUYERS = [
+    ["Numbers", "owners, managers", "margin, speed, repeat sales", "Talk real numbers. Never invent any."],
+    ["Experience", "bartenders, GMs", "flavor, cocktails", "Pour a taste."],
+    ["Skeptic", "has seen 100 brands", "consistency, support", "Be real, don't oversell, come back."],
+    ["Trendsetter", "cocktail bars, boutiques", "story, look", "Lead with the music and rebellion."],
+    ["Indifferent", "slammed, distracted", "their time", "One reason, then offer to return."],
+  ];
   // A manager can reword the promise, Do, Never and the replies (manager mode > Brand facts), so these are only the starting wording (facts.js keeps the edits).
   Facts.setReview({ promise: "Additive-free. Only three ingredients and no fake flavors.", doList: DO, neverList: NEVER, replies: IFTHEY.map(x => x[1]) });
   // The first sentence of the promise in bold, the rest as it is.
@@ -38,10 +53,16 @@ const CallCard = (() => {
     const R = Facts.review(), F = Facts.get();
     return `<div class="card"><h3>Say it in one line</h3><p>${promiseLine(R.promise)}</p>
         <ul class="xlist"><li><b>The name:</b> a corrido is a Mexican ballad. The brand borrows its music-and-rebellion spirit.</li><li><b>The maker:</b> stamped by one of the first female master distillers.</li><li><b>No famous fans:</b> the tequila does the talking, so never claim any.</li></ul></div>
+      <div class="card"><h3>Who am I talking to?</h3><ul class="xlist">${BUYERS.map(([n, who, cares, win]) => `<li><b>${n}</b> <small>(${who})</small>: cares about ${cares}. ${win}</li>`).join("")}</ul></div>
       <div class="card"><h3>The four bottles</h3><div class="xlineup">${LINEUP.map(([n, pr, notes, handle, img]) => `<a class="xbottle" href="${SHOP_URL}${handle}" target="_blank" rel="noopener noreferrer"><img src="${IMG}${img}" alt="A bottle of Tequila Corrido ${n}" loading="lazy"><div class="xtext"><b>${n}</b><span class="xprice">${pr}</span><small>${notes}</small><em>Shop page ↗</em></div><span class="sr"> (opens in a new tab)</span></a>`).join("")}</div>
         <p class="note2">These are the public shop prices. Wholesale terms aren't public, so say you'll confirm them in writing.${F.checked ? ` Prices last checked ${Facts.dateLabel(F.checked)}.` : ""}</p></div>
+      <div class="card"><h3>How it's made</h3><p><b>Harvest → cook → extract → ferment → distill → age → blend.</b></p>
+        <ul class="xlist"><li>100% Blue Weber agave, hand-picked in the Jalisco highlands.</li><li>Slow-cooked in low-pressure autoclaves, natural yeast, double distilled in pot stills.</li><li>Blanco rests 30 days. Reposado is 8 months in mixed oaks. Añejo is 18 months and finishes in merlot barrels.</li></ul></div>
       <div class="ccrow"><div class="card"><h3>Do</h3><ul class="xlist">${R.doList.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div><div class="card"><h3>Never</h3><ul class="xlist nev">${R.neverList.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div></div>
-      <div class="card"><h3>If they say…</h3><dl class="ifthey">${IFTHEY.map(([a], i) => `<dt>${a}</dt><dd>${esc(R.replies[i] || IFTHEY[i][1])}</dd>`).join("")}</dl></div>
+      <div class="card"><h3>If they say…</h3><dl class="ifthey">${IFTHEY.map(([a], i) => `<dt>${a}</dt><dd>${esc(R.replies[i] || IFTHEY[i][1])}</dd>`).join("")}${MORE.map(([a, r]) => `<dt>${a}</dt><dd>${esc(r)}</dd>`).join("")}</dl></div>
+      <div class="card"><h3>Sales mindset</h3><ul class="xlist"><li><b>Listen 80%, talk 20%.</b> Ask, don't pitch.</li><li>Find the need they didn't know they had.</li><li>Tell it in four beats: the problem, the dream, the plan, the payoff.</li><li><b>Us vs. them (for you, not for their ears):</b> no additives, a master maestro and quality over price, against fake flavors, mass production and hype.</li></ul></div>
+      <details class="card xmerch"><summary><h3>Tequila 101</h3><small>4 quick facts</small></summary>
+        <ul class="xlist"><li>Only five Mexican states can make it, Jalisco first. It must be blue agave, certified by the CRT. The NOM number on the label names the distillery.</li><li>"100% blue agave" is the real thing. A mixto is only 51% agave.</li><li>Highlands agave is sweeter and floral. Lowlands is earthier and peppery.</li><li>Blanco is unaged. Reposado rests 2 to 12 months, Añejo 1 to 3 years, Extra Añejo 3 or more.</li></ul></details>
       <details class="card xmerch" id="calc"><summary><h3>Per-pour cost calculator</h3><small>optional</small></summary>
         <p class="note2">Per-pour maths beats arguing about the bottle price. Type in the bar's numbers. This uses only what you enter, and it never quotes a margin.</p>
         <div class="calcgrid">
@@ -68,5 +89,5 @@ const CallCard = (() => {
     show();
   }
 
-  return { pourMath, review, wire, DO, NEVER, IFTHEY };
+  return { pourMath, review, wire, DO, NEVER, IFTHEY, MORE };
 })();
