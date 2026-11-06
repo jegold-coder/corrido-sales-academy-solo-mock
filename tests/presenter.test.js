@@ -16,8 +16,8 @@ const ev = s => vm.runInContext(s, ctx);
 
 // the sample player
 const P = ev("Presenter.sampleProgress('sam')");
-ok("it is a Tier 2 rep who has finished the first six stops", Object.keys(P.done).join() === ev("PATH.slice(0, 6).join()") && ev("BOSSES.filter(b => Presenter.sampleProgress('sam').done[b.id]).length") === 2);
-ok("it has history for the missions and lessons played, and enough skills for the radar chart", P.history.length === 5 && ev("Progress.skillAverages(Presenter.sampleProgress('sam')).length") >= 3);
+ok("it is a Tier 2 rep who has finished the first eight stops", Object.keys(P.done).join() === ev("PATH.slice(0, 8).join()") && ev("BOSSES.filter(b => Presenter.sampleProgress('sam').done[b.id]).length") === 2);
+ok("it has history for the missions and lessons played, and enough skills for the radar chart", P.history.length === 7 && ev("Progress.skillAverages(Presenter.sampleProgress('sam')).length") >= 3);
 ok("there are moments to review, each with what the Review tab needs", P.mistakes.length >= 3 && P.mistakes.every(m => m.mission && m.skill && m.line && m.text && m.better && Array.isArray(m.missed) && m.score < 3.5));
 ok("it has a before and after knowledge check, a streak and demo teammates", P.pre.score === 5 && P.post.score === 8 && P.streak === 5 && Object.keys(P.team).length > 0);
 ok("stops stay locked until the one before is done; the sample player has unlimited boss tries so a demo can retry, but the game itself does not by default", P.proto.unlockStops === false && P.proto.unlimitedTries === true && ev("PROTO_DEFAULTS.unlockStops") === false && ev("PROTO_DEFAULTS.unlimitedTries") === false);
@@ -42,8 +42,8 @@ ok("a first-time visitor who leaves goes back to a first-time visit (nothing sav
 
 // random sample progress: part-way through the season every time, never nothing and never the whole game, and a different point on each press
 const picks = Array.from({ length: 300 }, () => ev("Presenter.randomStop()")), idx = picks.map(id => ev("PATH").indexOf(id));
-ok("a random sample stops after at least four stops and never after the last one", Math.min(...idx) >= 3 && Math.max(...idx) <= ev("PATH.length") - 2 && !picks.includes(ev("PATH[PATH.length - 1]")));
-ok("it uses the whole range, and never picks the same point twice in a row", new Set(picks).size === ev("PATH.length") - 4 && picks.every((id, i) => i === 0 || id !== picks[i - 1]));
+ok("a random sample stops after at least six stops and never after the last one", Math.min(...idx) >= 5 && Math.max(...idx) <= ev("PATH.length") - 2 && !picks.includes(ev("PATH[PATH.length - 1]")));
+ok("it uses the whole range, and never picks the same point twice in a row", new Set(picks).size === ev("PATH.length") - 6 && picks.every((id, i) => i === 0 || id !== picks[i - 1]));
 const partial = picks.slice(0, 40).map(id => ev(`Presenter.sampleProgress(${JSON.stringify(id)})`));
 ok("every random sample has some stops done and some left, in order from the start, so only the next stop is open", partial.every(P => { const n = Object.keys(P.done).length; return n >= 4 && n < ev("PATH.length") && ev("PATH").slice(0, n).every(id => P.done[id]); }));
 ok("every random sample has what the dashboard needs: a mission played, a radar with three skills, and a before and after check once past Priya", partial.every(P => P.history.some(h => h.mode === "typed") && ev(`Progress.skillAverages(${JSON.stringify(P)}).length`) >= 3 && P.pre && (!P.done.priya || P.post)));

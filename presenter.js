@@ -84,7 +84,7 @@ const Presenter = (() => {
   // last one, so the game is part-way through and never finished. It never picks the stop it picked last, so pressing the button changes the map.
   let lastStop = null;
   const randomStop = () => {
-    const pool = PATH.slice(3, PATH.length - 1).filter(id => id !== lastStop);
+    const pool = PATH.slice(5, PATH.length - 1).filter(id => id !== lastStop);
     return (lastStop = pool[Math.floor(Math.random() * pool.length)]);
   };
   function enter(through) {

@@ -64,7 +64,7 @@ let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL "
     await step("the new rep's map is locked behind the required knowledge check, which opens it once finished", async () => {
       if (!await chrome.waitFor("!!document.querySelector('#gocheck')")) throw new Error("no Step 1 card");
       const locked = await chrome.eval("document.querySelectorAll('.node.locked').length");
-      if (locked !== 16) throw new Error("expected every stop locked, got " + locked);
+      if (locked !== 18) throw new Error("expected every stop locked, got " + locked);
       await click("#gocheck");
       for (let i = 0; i < 10; i++) {
         if (!await chrome.waitFor("!!document.querySelector('.opt:not(:disabled)')")) throw new Error("no question " + (i + 1));
@@ -80,9 +80,9 @@ let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL "
       if (await chrome.eval("!!document.querySelector('.map') || !!document.querySelector('.nextup')")) throw new Error("the map or the Next up bar showed before Got it");
       await click("#tipok"); if (!await chrome.waitFor("!!document.querySelector('.map') && !!document.querySelector('.nextup') && !document.querySelector('#howtip')")) throw new Error("no map after Got it");
     });
-    await step("the map has 16 stops, only the first one open", async () => {
+    await step("the map has 18 stops, only the first one open", async () => {
       const r = await chrome.eval("({ nodes: document.querySelectorAll('.node').length, locked: document.querySelectorAll('.node.locked').length })");
-      if (r.nodes !== 16 || r.locked !== 15) throw new Error(JSON.stringify(r));
+      if (r.nodes !== 18 || r.locked !== 17) throw new Error(JSON.stringify(r));
     });
     await step("the first lesson can be opened from the map and played through to its results", async () => {
       await click(".node[data-id=brand]");   // one click: no difficulty popup for a lesson, it opens on its facts
@@ -285,7 +285,7 @@ let fails = 0; const ok = (n, c, x = "") => { console.log((c ? "ok   " : "FAIL "
       }
       await chrome.eval("home()"); await sleep(300);   // a plain redraw, with nothing new to pop
       const r2 = await chrome.eval(`(() => { const a = ${rings}; return a.filter(x => !x).length + a.length * 100; })()`);
-      if (r2 !== 1600) throw new Error("after a redraw: " + r2);
+      if (r2 !== 1800) throw new Error("after a redraw: " + r2);
     });
     await step("the map page is never wider than the screen at any phone or tablet width, and the page can't bounce sideways", async () => {
       await chrome.eval("(() => { Presenter.finish(); document.body.classList.remove('mgr'); home(); })()");

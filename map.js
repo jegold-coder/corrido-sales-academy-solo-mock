@@ -64,7 +64,7 @@ function home() {
   // A tier banner hangs 120px above its first stop so the START tag fits between them. Tier 0 has no stop above it to bump into, so its banner sits 26px from the top of the map.
   const bandUp = (f, t) => (t === 0 ? TOP - 26 : 120);
   const bands = starts.map((f, t) => `<div class="tierband ${t < tNow ? "past" : t === tNow ? "now" : "next"} ${freshBoss && t === freshBoss.tier + 1 ? "new" : ""}" style="--x:${xs[f] / 4}%;top:${Math.max(ys[f] - bandUp(f, t), 22) / H * 100}%"><span>Tier ${t}<i class="tt"> · ${TIERS[t]}</i></span></div>`).join("");
-  const newRep = !Object.keys(state.done).length;   // nothing finished yet: the side panels are kept quiet
+  const newRep = !Object.keys(state.done).length;   // nothing finished yet
   const intro = newRep && !gated && !state.tipSeen;   // a first visit: only the How it works box and its Got it button, so there is one thing to click; the map, the Next up bar and the tiers follow
   app.innerHTML = `<section class="view maphome${newRep ? " newrep" : ""}">${sideLeft}<div class="mcenter">
     <h1 class="sr">Your training map</h1>

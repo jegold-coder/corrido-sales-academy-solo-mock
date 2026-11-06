@@ -36,7 +36,7 @@ for (const k of all) for (let t = 0; t <= 5; t++) {
   if (!bossOk && !p.topic.stop && ordinary.length) bad.push(`${k}@${t}: picked a boss though ${ordinary[0]} practices it`);
 }
 ok("every skill at every tier gets a real stop the rep has reached, an ordinary stop when one fits", bad.length === 0, bad.slice(0, 4).join("; "));
-ok("a Tier 0 rep, who has only the lessons, is sent to a lesson", ["lineup", "brand"].includes(ev("coachPlan('Closing', 0).stop.id")));
+ok("a Tier 0 rep, who has only the lessons, is sent to a lesson", ["lineup", "brand", "process", "buyers"].includes(ev("coachPlan('Closing', 0).stop.id")));
 
 // the sample class's numbers, as the page shows them
 ok("the class's lowest skill, closing, sends a Tier 2 rep to a mission with a closing step", ev("coachPlan('Closing', 2).stop.id") === "quiet" && ev("SCENARIOS.find(s => s.id === 'quiet').steps.some(t => t.skill === 'Closing')"));

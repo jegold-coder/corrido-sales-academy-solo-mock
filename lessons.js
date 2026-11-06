@@ -34,19 +34,33 @@ const BANK = [
   // ----- Selling
   { id: "busy", topic: "Selling", q: `The bar is slammed and the owner is busy. How do you open?`, a: `Respect their time and offer to come back`, w: [`Start your full pitch`, `Raise your voice over the noise`, `Wait at the bar all night`], why: `Respecting a busy owner's time earns you the conversation.` },
   { id: "switch", topic: "Selling", q: `"Why should I switch brands?" What's the best answer?`, a: `One real difference, then invite them to taste`, w: [`"We're simply the best"`, `"The other brand is overrated"`, `"Everyone is switching"`], why: `Specific and true, with proof they can taste for themselves.` },
+  { id: "harvest", topic: "Process", q: `Which agave goes into Corrido?`, a: `100% Blue Weber, hand-picked in Jalisco`, w: [`Blue agave blended with cane sugar`, `Wild agave gathered in Sonora`, `Lowland agave cut by machine`], why: `Corrido starts with 100% Blue Weber agave, hand-picked in the Jalisco highlands.` },
+  { id: "cook", topic: "Process", q: `How does Corrido cook its agave?`, a: `Slow-cooked in low-pressure autoclaves`, w: [`Roasted in an underground fire pit`, `Shredded raw in a diffuser`, `Baked for a week in a brick horno`], why: `The agave is slow-cooked in low-pressure autoclaves, about 18 to 24 hours, to unlock its natural sugars.` },
+  { id: "ferment", topic: "Process", q: `What turns the cooked agave juice into alcohol?`, a: `Natural yeast fermentation`, w: [`Added cane sugar and syrup`, `A quick chemical conversion`, `Heat from the steam cooker`], why: `Natural fermentation turns the agave sugars into alcohol and builds the flavor. It's also part of why Corrido has no additives.` },
+  { id: "still", topic: "Process", q: `How is Corrido distilled?`, a: `Twice, in stainless steel pot stills`, w: [`Once, in a copper column still`, `Three times, for extra smoothness`, `Once, then filtered through charcoal`], why: `Corrido is double distilled in stainless steel pot stills.` },
+  { id: "heart", topic: "Process", q: `Which part of the run becomes the tequila?`, a: `The clean middle cut, called the heart`, w: [`The first vapor, called the heads`, `The last drip, called the tails`, `The agave core, called the piña`], why: `Heads and tails are set aside. Only the heart, the clean middle of the run, goes into the bottle.` },
+  { id: "barrel", topic: "Process", q: `What finishes the Añejo's 18 months of aging?`, a: `French oak that held Mexican merlot`, w: [`New charred American oak`, `Sherry casks from Spain`, `Barrels that held Caribbean rum`], why: `The Añejo finishes in French oak barrels that previously held Mexican merlot from Valle de Guadalupe.` },
+  { id: "bn", topic: "Buyers", q: `A liquor store manager asks about margins and sell-through. Which buyer is that?`, a: `The Numbers-Driven Business Brain`, w: [`The Trend-Driven Cool Curator`, `The Skeptic, the burned buyer`, `The Indifferent, no-time buyer`], why: `Numbers-driven buyers care about profit, velocity and repeat sales. Show real movement data, never made-up numbers.` },
+  { id: "bx", topic: "Buyers", q: `A bartender cares about flavor and cocktails. How do you win them?`, a: `Pour a sample and let the liquid speak`, w: [`Open with margins and shelf data`, `Hand over a long printed price sheet`, `Read out every award the brand won`], why: `Hospitality buyers care about flavor and versatility. A taste shows them how it works in a cocktail.` },
+  { id: "bs", topic: "Buyers", q: `A buyer has seen a hundred brands come and go. What works?`, a: `Be real, don't oversell, show you'll stay`, w: [`Promise big sales and a fast first order`, `Drop off a sample and leave quickly`, `Say Corrido beats every other brand`], why: `Skeptics want consistency and support. Talk long-game and show up again.` },
+  { id: "bt", topic: "Buyers", q: `Which buyer is won by the music, heritage and rebellion story?`, a: `The Trend-Driven Cool Curator`, w: [`The Numbers-Driven Business Brain`, `The Indifferent, no-time buyer`, `The Skeptic, the burned buyer`], why: `Curators want a brand with a story and a look. Lead with the Corrido story and let the packaging talk.` },
+  { id: "bi", topic: "Buyers", q: `The owner is slammed and distracted. What do you do?`, a: `Be quick, give one reason, offer to return`, w: [`Wait at the bar until they have time`, `Give the full pitch while they work`, `Leave a bottle with the staff and go`], why: `Respect their time, give one strong reason to care and offer to follow up when it's calmer. Never leave alcohol with staff.` },
+  { id: "boff", topic: "Buyers", q: `What do liquor store and grocery buyers care about most?`, a: `Margins, shelf space and sell-through`, w: [`Cocktail versatility and pour cost`, `Live music and event energy`, `Tasting notes and nothing else`], why: `Off-premise buyers want it on the shelf, turning, and sold. Educate their staff, not just the buyer.` },
 ];
 const Q = id => BANK.find(q => q.id === id);
 
-// Two lessons, six questions each. They come first on the map, before any mission, so reps have the background they need.
+// Four lessons, six questions each. They come first on the map, before any mission, so reps have the background they need.
 // The compliance questions (21+, health claims, margins) stay in the knowledge-check pool and are practiced in the missions.
 const LESSONS = [
   { id: "brand", title: "Meet Corrido", sub: "The brand and its story", icon: "🎶", qs: ["name", "promise", "distiller", "voice", "endorse", "contrast"] },
   { id: "lineup", title: "Know the Lineup", sub: "Tasting notes and prices", icon: "🍾", qs: ["noteBlanco", "noteRepo", "noteAnejo", "noteOver", "priciest", "blancoPrice"] },
+  { id: "process", title: "How It's Made", sub: "From agave to bottle", icon: "🌵", qs: ["harvest", "cook", "ferment", "still", "heart", "barrel"] },
+  { id: "buyers", title: "Know Your Buyers", sub: "The five buyer types", icon: "🤝", qs: ["bn", "bx", "bs", "bt", "bi", "boff"] },
 ];
 // Path order on the map: lessons are mixed in between missions.
-// Both lessons come first, then the Brand Brain boss, then missions from easiest to hardest (see LEVEL_OF in scenarios.js).
+// The four lessons come first, then the Brand Brain boss, then missions from easiest to hardest (see LEVEL_OF in scenarios.js).
 // Boss battles are at the end of each tier: Brand Brain, Priya, Mia, Rafael, Dana and the Bad-Tempered Owner (see BOSSES in tiers.js).
-const PATH = ["brand", "lineup", "brandbrain", "quiet", "priya", "sam", "mia", "gas", "buyer", "marco", "ray", "stickup", "dana", "comply", "hardno", "mean"];
+const PATH = ["brand", "lineup", "process", "buyers", "brandbrain", "quiet", "priya", "sam", "mia", "gas", "buyer", "marco", "ray", "stickup", "dana", "comply", "hardno", "mean"];
 
 // Answer choices for a question at the current difficulty (state.diff): 3 options on Easy and Medium, 4 on Hard.
 function choicesFor(q, diff) {
