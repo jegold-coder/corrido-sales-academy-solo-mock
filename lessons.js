@@ -49,18 +49,16 @@ const BANK = [
 ];
 const Q = id => BANK.find(q => q.id === id);
 
-// Four lessons, six questions each. They come first on the map, before any mission, so reps have the background they need.
+// Two lessons (eight and nine questions). They come first on the map, before any mission, so reps have the background they need.
 // The compliance questions (21+, health claims, margins) stay in the knowledge-check pool and are practiced in the missions.
 const LESSONS = [
-  { id: "brand", title: "Meet Corrido", sub: "The brand and its story", icon: "🎶", qs: ["name", "promise", "distiller", "voice", "endorse", "contrast"] },
-  { id: "lineup", title: "Know the Lineup", sub: "Tasting notes and prices", icon: "🍾", qs: ["noteBlanco", "noteRepo", "noteAnejo", "noteOver", "priciest", "blancoPrice"] },
-  { id: "process", title: "How It's Made", sub: "From agave to bottle", icon: "🌵", qs: ["harvest", "cook", "ferment", "still", "heart", "barrel"] },
-  { id: "buyers", title: "Know Your Buyers", sub: "The five buyer types", icon: "🤝", qs: ["bn", "bx", "bs", "bt", "bi", "boff"] },
+  { id: "brand", title: "Meet Corrido", sub: "The brand and how it's made", icon: "🎶", qs: ["name", "promise", "distiller", "endorse", "harvest", "cook", "still", "barrel"] },
+  { id: "lineup", title: "Know the Lineup", sub: "Tasting notes, prices and buyers", icon: "🍾", qs: ["noteBlanco", "noteRepo", "noteAnejo", "priciest", "bn", "bx", "bs", "bt", "bi"] },
 ];
 // Path order on the map: lessons are mixed in between missions.
-// The four lessons come first, then the Brand Brain boss, then missions from easiest to hardest (see LEVEL_OF in scenarios.js).
+// Both lessons come first, then the Brand Brain boss, then missions from easiest to hardest (see LEVEL_OF in scenarios.js).
 // Boss battles are at the end of each tier: Brand Brain, Priya, Mia, Rafael, Dana and the Bad-Tempered Owner (see BOSSES in tiers.js).
-const PATH = ["brand", "lineup", "process", "buyers", "brandbrain", "quiet", "priya", "sam", "mia", "gas", "buyer", "marco", "ray", "stickup", "dana", "comply", "hardno", "mean"];
+const PATH = ["brand", "lineup", "brandbrain", "quiet", "priya", "sam", "mia", "gas", "buyer", "marco", "ray", "stickup", "dana", "comply", "hardno", "mean"];
 
 // Answer choices for a question at the current difficulty (state.diff): 3 options on Easy and Medium, 4 on Hard.
 function choicesFor(q, diff) {
@@ -125,17 +123,15 @@ function knowledgeCheck(ob = null) {
       if (ob) return onboardingResult(score, total, ob, got);
       checkBadges = got; return dashboard("check");
     }
-    const it = queue[0], opts = shuffle([[it.a, 1], ...it.w.slice(0, 2).map(x => [x, 0])]), canSkip = ob && queue.length > 1;
+    const it = queue[0], opts = shuffle([[it.a, 1], ...it.w.slice(0, 2).map(x => [x, 0])]);
     app.innerHTML = `<section class="view sheet"><div class="lesson-top"><h1 class="sr">Knowledge check</h1>${ob ? "" : '<button class="x" id="exit" aria-label="Exit">✕</button>'}<div class="prog"><i style="width:${(total - queue.length) / total * 100}%"></i></div><span class="chip">Knowledge check · ${total - queue.length} of ${total} done</span></div>
       <div class="q">${it.q}</div><div class="opts">${opts.map((o, n) => `<button class="opt" data-n="${n}">${o[0]}</button>`).join("")}</div>
-      ${ob ? `<p class="note2">${canSkip ? "Not sure? You can skip a question for now, and it comes back at the end. " : ""}You need to finish the check to open the map.</p>` : ""}
-      ${canSkip ? '<button class="btn alt" id="skipq" type="button">Skip for now</button>' : ""}<div id="fb" aria-live="polite"></div></section>`;
+      ${ob ? `<p class="note2">You need to finish the check to open the map.</p>` : ""}
+      <div id="fb" aria-live="polite"></div></section>`;
     if (!ob) $("#exit").onclick = () => dashboard("check");
-    if (canSkip) $("#skipq").onclick = () => { queue.push(queue.shift()); show(); };
     app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
       const ok = opts[b.dataset.n][1] === 1; Sound.sfx(ok ? "right" : "wrong");
       app.querySelectorAll(".opt").forEach(x => { x.disabled = true; if (opts[x.dataset.n][1]) x.classList.add("best"); });
-      if (canSkip) $("#skipq").disabled = true;
       if (!ok) b.classList.add("bad");
       $("#fb").innerHTML = `<div class="feed ${ok ? "best" : "bad"}"><span>${ok ? "Correct! " : "Not quite. "}${it.why}</span><button class="btn" id="nx">Continue</button></div>`;
       $("#nx").onclick = () => { queue.shift(); if (ok) score++; else missed.push(it.topic); show(); };

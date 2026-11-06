@@ -10,7 +10,7 @@ const ev = s => vm.runInContext(s, ctx);
 
 // tier banners: a tier begins right after the boss before it
 const starts = ev("tierStarts(PATH)");
-ok("the six tiers start at stops 0, 5, 7, 9, 11 and 15", starts.join() === "0,5,7,9,11,15", starts.join());
+ok("the six tiers start at stops 0, 3, 5, 7, 9 and 13", starts.join() === "0,3,5,7,9,13", starts.join());
 ok("every tier after the first begins right after a boss", ev("tierStarts(PATH).slice(1).every((f, i) => PATH[f - 1] === BOSSES[i].id)"));
 ok("every boss is the last stop of its tier", ev("BOSSES.slice(0, 5).every((b, i) => PATH.indexOf(b.id) === tierStarts(PATH)[i + 1] - 1) && PATH[PATH.length - 1] === BOSSES[5].id"));
 // the pop and the glowing road

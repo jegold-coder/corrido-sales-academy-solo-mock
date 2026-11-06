@@ -58,7 +58,7 @@ function dashProgress(el) {
   const unseen = AnswerLog.unseen();
   el.innerHTML = `${unseen ? `<p class="learn newnote">📝 <b>Your manager left you ${unseen === 1 ? "a note" : unseen + " notes"}.</b> <button class="btn" id="pnote" type="button">Read it in Review</button></p>` : ""}${tierCard()}${Assign.card()}
     <div class="stats3"><div><b>${done}/${ALL_STOPS().length}</b><span>stops finished</span></div><div><b>${wins}</b><span>missions won</span></div><div><b>${H.length ? (avg / 20).toFixed(1) + " / 5" : "–"}</b><span>average score</span></div></div>
-    ${!state.pre ? '<p class="learn withbtn"><span>Optional: the 2-minute <b>knowledge check</b> shows where you start, so you can see how much you improve.</span><button class="btn alt" id="pcheck" type="button">Take the check</button></p>' : ""}
+    ${!state.pre ? '<p class="learn withbtn"><span>The 2-minute <b>knowledge check</b> is required. It shows where you start, so you can see how much you improve.</span><button class="btn alt" id="pcheck" type="button">Take the check</button></p>' : ""}
     <p class="learn${H.length && weak ? " withbtn" : ""}">${rec}</p>
     ${Surprise.card()}
     <div class="card"><h3>Skills</h3>${fams.length >= 3

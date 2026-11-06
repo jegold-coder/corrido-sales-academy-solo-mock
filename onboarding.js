@@ -1,7 +1,7 @@
 "use strict";
 // First-run flow: age check (in index.html) -> create your rep (every option is there; it starts from a random look) -> a short tutorial of three cards,
 // skippable -> the map, open from the start. Nothing opens by itself: the Next up bar shows where to begin and the rep can explore first.
-// The knowledge check is optional (Dashboard > Knowledge check). The tutorial can be replayed from Dashboard > Settings > Help.
+// The knowledge check is required before the map opens (it can be retaken from Dashboard > Knowledge check). The tutorial can be replayed from Dashboard > Settings > Help.
 // Returning players skip straight to the map after the age check.
 
 function startFlow() {
