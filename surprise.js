@@ -52,7 +52,7 @@ const SURPRISE = (V => [
         [`"As I was saying, we make four different bottles, and each one has its own tasting notes and price."`, `Picking up where you left off is not the short version.`],
         [`"Short version: great tequila, everyone loves it, and your guests will too. Buy a case today."`, `Hype and a pressure close, with no true fact in it.`]],
     reply: { best: `That's the version I needed. Bring a tasting Wednesday. Thank you.`, mid: `Hm, okay. Send me something short and I'll see.`, bad: `That's not what I asked for. I have to go.` },
-    crit: { need: [[/(additive|three ingredients|no fake|female master distiller|first female)/i, "give one clear message"],
+    crit: { need: [[/(additive|three ingredients|no fake)/i, "give one clear message"],
                    [/(event|guests?|wedding|party|parties|signature (drink|cocktail)|cocktail|menu|bar package|toast)/i, "tie it to her events"],
                    [/(taste|tasting|sample|come by|bring|stop by|follow up|send)/i, "offer an easy next step"]],
             bad: [[/(start from the beginning|from the top|as i was saying|where i left off|where we were)/i, "She asked for the short version. Don't start over."],
@@ -136,7 +136,7 @@ const SURPRISE = (V => [
         [`"You need to hear this: it's the best additive-free tequila, and you need to taste it right now."`, `Pushy and boastful. Telling her what she needs to do is the opposite of earning a minute.`]],
     reply: { best: `Hm. Additive-free, three ingredients. Okay, one taste. Two minutes.`, mid: `Fine. Make it quick. I'm not promising anything.`, bad: `I'm leaving. Don't call me.` },
     crit: { need: [[/(fair|understand|i hear you|i get it|makes sense|appreciate|exhausting|sounds (like|frustrating))/i, "agree calmly with her frustration"],
-                   [/(additive|three ingredients|no fake|first female|master distiller|celebrity)/i, "give one true difference"],
+                   [/(additive|three ingredients|no fake|celebrity)/i, "give one true difference"],
                    [/(taste|pour|tasting|sample|two minutes|one minute|try)/i, "ask for something small and quick"]],
             bad: [[/(other reps|those reps|trust me|you'?ll regret|everybody (who )?tries|everyone loves|everybody loves|you need to|right now|the best (additive|tequila))/i, "Don't run others down, boast or pressure her. Give one true fact."]] } },
 

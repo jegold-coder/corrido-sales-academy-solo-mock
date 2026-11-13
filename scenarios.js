@@ -1,7 +1,7 @@
 "use strict";
 // Mission data for the sales academy. Facts about Tequila Corrido come only from ilovetequilacorrido.com:
 // additive-free, only three ingredients, no fake flavors, celebrity-free (the site says "It's not about flashy
-// endorsements"), one of the first female master distillers, Blanco $44.99, Reposado $54.99, Overproof $56.99,
+// endorsements"), Blanco $44.99, Reposado $54.99, Overproof $56.99,
 // Añejo $89.99, 21+ only. Wholesale terms, margins and sales figures are NOT public, so right answers never invent them.
 //
 // Every step has ONE right answer. The wrong answers are written as near-misses: each sounds professional and
@@ -52,7 +52,7 @@ const SCENARIOS = [
         R: [`"Your guests know that brand for a reason. Corrido's difference is simple: only three ingredients, no fake flavors. Pour them side by side."`, `Fair comparison, one real difference, and an invitation to taste.`],
         RH: `"Fair question. The one thing I'd point to: only three ingredients, no fake flavors. Taste them next to each other."`,
         E: [[`"That brand is garbage. Everyone's moving away from it."`, `Never bash a competitor. It costs trust and you can't back it up.`]],
-        H: [[`"Corrido is additive-free, from one of the first female master distillers. Guests love a story, and that one's hard to beat."`, `Facts and a story, but no real comparison and no invitation to taste.`],
+        H: [[`"Corrido is additive-free, with a story behind the name. Guests love a story, and that one's hard to beat."`, `Facts and a story, but no real comparison and no invitation to taste.`],
             [`"The big brands lean on marketing. Corrido leans on the tequila: three ingredients, no fake flavors. You'll taste it."`, `It quietly insults the brand he pours.`],
             [`"It's new, so your guests get to discover something first, and bartenders love being early on a brand."`, `Novelty alone doesn't answer why he should switch.`]],
         rd: [10, 20, 0], reply: { best: `Additive-free, huh. That's a real difference. I'd want to taste it.`, bad: `Don't talk trash about other brands in my bar.` } },
@@ -100,7 +100,7 @@ const SCENARIOS = [
         RH: `"Fair. I don't have sell-through numbers to show you. Let's pilot with one or two accounts and see."`,
         E: [[`"It's selling out everywhere right now."`, `Claims you can't prove ruin trust with a seasoned buyer.`]],
         H: [[`"That's fair. Plenty of bars have already asked about it, and our social following grows every week."`, `Followers and interest aren't sell-through, and you can't verify them.`],
-            [`"That's fair. The female master distiller story gets people talking, and that kind of buzz tends to move bottles."`, `A good story, but it doesn't answer her question about sales.`],
+            [`"That's fair. The corrido story gets people talking, and that kind of buzz tends to move bottles."`, `A good story, but it doesn't answer her question about sales.`],
             [`"That's fair. You'll just have to take my word for it. I believe in this brand, and so will your accounts."`, `Asking for blind trust is the opposite of proof.`]],
         reply: { best: `A pilot I can live with. What does it look like?`, bad: `Then we have nothing to talk about.` } },
       { skill: "Closing", q: `How do you close?`, hint: `She asked what you need. Offer a concrete plan with dates: accounts, terms in writing, a review.`,
@@ -437,15 +437,15 @@ const BUYER = {
           [`"Both. I'm with Tequila Corrido, a brand named for the corrido. We're basically the authentic tequila for places like yours."`, `Claiming authenticity is exactly what he can't stand.`],
           [`"Both. I'm with Tequila Corrido. Is the owner here? I'd like to speak with whoever buys the tequila."`, `He's the owner. You didn't read the room.`]],
       reply: { best: `Ha, my music. My dad's records. Sit, sit. What's this tequila?`, bad: `I get a lot of reps. Not today.` } },
-    { skill: "Storytelling", q: `How do you answer?`, hint: `Stay with what's true: the corrido name, one of the first female master distillers, celebrity-free. Don't claim more.`,
+    { skill: "Storytelling", q: `How do you answer?`, hint: `Stay with what's true: the corrido name, additive-free, celebrity-free. Don't claim more.`,
       line: `Rafael folds his arms. "Everyone says they're authentic. What's actually real about yours?"`,
-      R: [`"Good question. I'll stick to what I can stand behind: it's named for the corrido ballad, one of the first female master distillers stamped it, and it's celebrity-free."`, `Specific, true, and nothing extra.`],
-      RH: `"Only what's true: the name comes from the corrido, one of the first female master distillers stamped it, and there's no celebrity behind it."`,
+      R: [`"Good question. I'll stick to what I can stand behind: it's named for the corrido ballad, it's additive-free, and it's celebrity-free."`, `Specific, true, and nothing extra.`],
+      RH: `"Only what's true: the name comes from the corrido, it's additive-free, and there's no celebrity behind it."`,
       E: [[`"It's a family recipe that's been passed down for generations."`, `A made-up story. He will see through it.`]],
       H: [[`"It's authentic through and through: handcrafted in small batches, with methods that have been around for generations."`, `Invented details the brand doesn't claim.`],
           [`"It's a true Mexican heritage brand, so it fits your restaurant perfectly, and your customers will feel the connection."`, `An overclaim, and it assumes his customers' feelings.`],
           [`"Rebellious, music-driven and unapologetic. Honestly, it's more about the attitude than the tequila itself."`, `It undersells the actual product.`]],
-      reply: { best: `A woman master distiller. I like that. Go on.`, bad: `That sounds like every other pitch.` } },
+      reply: { best: `Named for the ballads. I like that. Go on.`, bad: `That sounds like every other pitch.` } },
     { skill: "Product knowledge", q: `What do you recommend?`, hint: `Match notes to moments: coffee and dried fruit is the Añejo, and a bright citrus margarita is the Blanco.`,
       line: `"My Sunday regulars sip after the family meal, something with coffee, dried fruit. And my margaritas are the star on weekends. What would you put in my hands?"`,
       R: [`"Here's what I'd love to put in your hands: two bottles for two moments, the Añejo for the Sunday sip, with coffee, agave and dried fruit, and the Blanco for margaritas, with citrus and floral agave."`, `Each bottle matched to a moment, using the listed notes.`],
@@ -694,8 +694,8 @@ const QUIET = {
       reply: { best: `"Mostly regulars and a few college kids on weekends. Margaritas and shots, honestly. Nothing fancy."`, mid: `"Uh, a mix of people, I guess. It depends on the night."`, bad: `"I mean... people. Is this about the tequila?"` } },
     { skill: "Product knowledge", q: `Tell Jamie what makes Tequila Corrido different.`, hint: `One clear fact, tied to her margaritas, plus the story.`,
       line: `"Margaritas and shots, mostly. So what makes yours different?"`,
-      R: [`"Great question. Corrido is additive-free, with only three ingredients and no fake flavors, so it makes a clean margarita. It also carries the stamp of one of the first female master distillers."`, `A true difference, tied to her drinks, with the story.`],
-      RH: `"Great question. Corrido is additive-free, with only three ingredients and no fake flavors, so it makes a clean margarita. It also carries the stamp of one of the first female master distillers."`,
+      R: [`"Great question. Corrido is additive-free, with only three ingredients and no fake flavors, so it makes a clean margarita."`, `A true difference, tied to her drinks.`],
+      RH: `"Great question. Corrido is additive-free, with only three ingredients and no fake flavors, so it makes a clean margarita."`,
       E: [[`"It's just better. Trust me, your guests will love it."`, `Hype with nothing specific behind it.`]],
       H: [[`"It's smoother and healthier than the big brands, so your guests feel better the next day."`, `A health claim, which you can't make.`]],
       reply: { best: `"Three ingredients, no fake flavors... that's a good line for the menu. I'd want to taste it."`, mid: `"Okay. Sounds nice, but they all say that, you know?"`, bad: `"Hm. That doesn't really tell me anything."` } },

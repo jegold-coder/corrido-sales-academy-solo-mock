@@ -7,7 +7,7 @@ const BANK = [
   // ----- Story and spirit
   { id: "name", topic: "Story", q: `What does the name "Corrido" come from?`, a: `A traditional Mexican ballad`, w: [`A type of agave plant`, `The founder's last name`, `A Mexican dance`], why: `A corrido is a traditional Mexican ballad. The brand borrows its music-and-rebellion spirit.` },
   { id: "promise", topic: "Story", q: `Which phrase is part of the brand's promise?`, a: `Only three ingredients, no fake flavors`, w: [`Aged in oak for twelve years`, `Triple distilled for smoothness`, `Organic and low calorie`], why: `"Only three ingredients, no fake flavors" is the heart of the additive-free message.` },
-  { id: "distiller", topic: "Story", q: `What does the brand say about its master distiller?`, a: `It bears the stamp of one of the first female master distillers`, w: [`It was made by a retired bartender`, `A celebrity founder blends it`, `A single family has made it for 200 years`], why: `Corrido tequila carries the stamp of one of the first female master distillers.` },
+  { id: "origin", topic: "Story", q: `What place does the brand tie its tequila to?`, a: `Mexico's tequila heartland`, w: [`The Scottish Highlands`, `Kentucky bourbon country`, `The Caribbean coast`], why: `Corrido tequila is tied to Mexico's tequila heartland.` },
   { id: "imagery", topic: "Story", q: `Which imagery shows up on the brand's site?`, a: `Vinyl records and piano`, w: [`Surfboards and palm trees`, `Race cars and trophies`, `Mountains and snowboards`], why: `Bottles, vinyl records and piano keys carry the music-meets-rebellion look.` },
   { id: "voice", topic: "Story", q: `How would you describe the brand's voice?`, a: `Bold, irreverent and a little rebellious`, w: [`Quiet and formal`, `Scientific and technical`, `Luxury and exclusive`], why: `The voice is about defiance and authenticity, with lines like "Let's stir up some trouble."` },
   { id: "endorse", topic: "Story", q: `What does the brand say it is NOT about?`, a: `Flashy endorsements`, w: [`Quality and craftsmanship`, `Music and rebellion`, `Mexico's tequila heartland`], why: `Corrido is celebrity-free: not flashy endorsements, the tequila does the talking.` },
@@ -52,7 +52,7 @@ const Q = id => BANK.find(q => q.id === id);
 // Two lessons (eight and nine questions). They come first on the map, before any mission, so reps have the background they need.
 // The compliance questions (21+, health claims, margins) stay in the knowledge-check pool and are practiced in the missions.
 const LESSONS = [
-  { id: "brand", title: "Meet Corrido", sub: "The brand and how it's made", icon: "🎶", qs: ["name", "promise", "distiller", "endorse", "harvest", "cook", "still", "barrel"] },
+  { id: "brand", title: "Meet Corrido", sub: "The brand and how it's made", icon: "🎶", qs: ["name", "promise", "origin", "endorse", "harvest", "cook", "still", "barrel"] },
   { id: "lineup", title: "Know the Lineup", sub: "Tasting notes, prices and buyers", icon: "🍾", qs: ["noteBlanco", "noteRepo", "noteAnejo", "priciest", "bn", "bx", "bs", "bt", "bi"] },
 ];
 // Path order on the map: lessons are mixed in between missions.

@@ -34,7 +34,7 @@ const CRITERIA = {
           [/(bring the price down|whether we can bring)/i, "Don't promise price cuts you can't back up."]] },
   "marco:3": {
     need: [[/(respect|solid|great brand|good brand|known|knows it|for a reason|fair|understand)/i, "respect the brand he already pours"],
-           [/(additive|three ingredients|no fake|master distiller|female|first female)/i, "name one real difference"],
+           [/(additive|three ingredients|no fake)/i, "name one real difference"],
            [/(taste|side by side|side-by-side|try|pour them|compare|next to)/i, "invite him to taste"]],
     bad: [[/(garbage|trash|overrated|sucks|terrible|worse|everyone'?s moving away|they rely on marketing|rely on marketing|lean on marketing|leans on marketing)/i, "Never bash a competitor. It costs trust and you can't prove it."],
           [/(trust me|best ever|everyone loves|you'?d be crazy)/i, "Hype without proof sounds like a line. Use specific facts."],
@@ -151,7 +151,7 @@ const CRITERIA = {
   "ray:1": {
     need: [[/(additive|three ingredients|no fake)/i, "one real difference"],
            [/(taste|side by side|try|next to|pour them|compare)/i, "invite him to taste"],
-           [/(distiller|female|one of the first|only|one thing|honestly)/i, "keep it honest and specific"]],
+           [/(only|one thing|honestly)/i, "keep it honest and specific"]],
     bad: [[/(simply better|cooler bottle|smoother|bartenders love|more care than)/i, "That's subjective or unprovable. Name a true difference."],
           [/(more options than|four expressions give)/i, "Range is nice but doesn't answer 'what's different'."]] },
   "ray:2": {
@@ -166,7 +166,7 @@ const CRITERIA = {
     bad: [[/(secret|until you commit|order today|great price)/i, "Hiding prices or pushing a deal kills trust."],
           [/(about the same|probably|competitive with|worth it)/i, "A guess. Don't guess prices."]] },
   "ray:4": {
-    need: [[/(corrido|ballad|rebel|music|distiller)/i, "the Corrido story"],
+    need: [[/(corrido|ballad|rebel|music)/i, "the Corrido story"],
            [/(tasting|taste|bottle|try)/i, "a tasting"],
            [/(thursday|monday|tuesday|wednesday|friday|saturday|sunday|this week|tomorrow|tonight)/i, "a specific day"]],
     bad: [[/(just buy|brochure|you won'?t regret)/i, "Pressure or a brochure isn't a next step."],
@@ -273,7 +273,7 @@ const CRITERIA = {
            [/(owner here|whoever buys)/i, "She's the owner. Read the room."]] },
   "buyer:1": {
     need: [[/(named for|name comes from|corrido ballad|ballad|the corrido)/i, "the corrido name"],
-           [/(female|woman|distiller)/i, "one of the first female master distillers"],
+           [/(additive|three ingredients|no fake)/i, "additive-free"],
            [/(celebrit)/i, "celebrity-free"]],
     bad: [[/(family recipe|generations)/i, "A made-up story. She will see through it."],
            [/(handcrafted|small batches)/i, "Details the brand doesn't claim."],
@@ -364,7 +364,7 @@ Object.assign(CRITERIA, {
   "quiet:2": {
     need: [[/(additive|three ingredients|3 ingredients|no fake)/i, "say additive-free, three ingredients or no fake flavors"],
            [/(margarita|shots?|cocktail|your (guests|customers|crowd)|weeknight|clean)/i, "tie it to her margaritas or guests"],
-           [/(master distiller|female|first female|ballad|corrido (is|means|comes)|story|celebrity.?free)/i, "share the story behind it"]],
+           [/(ballad|corrido (is|means|comes)|story|celebrity.?free)/i, "share the story behind it"]],
     bad: [[/(just better|simply better|smoother than|the best)/i, "Vague. Give one true, specific difference."],
           [/(celebrit(y|ies) (drink|love|endorse|own)|famous (people|actors|singers))/i, "Don't claim celebrity fans. Corrido is celebrity-free."]] },
   "quiet:3": {

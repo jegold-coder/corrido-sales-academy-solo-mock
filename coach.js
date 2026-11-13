@@ -74,7 +74,7 @@ const Coach = {
   async llmJudge(sc, step, text) {
     const { key, model } = Coach.llm;
     if (!key) throw new Error("no key");
-    const prompt = `You are a strict but fair sales coach for Tequila Corrido, an additive-free tequila (only three ingredients, no fake flavors, one of the first female master distillers, sold 21+ only). Never accept health claims, serving anyone under 21, or invented prices, margins or sales numbers.
+    const prompt = `You are a strict but fair sales coach for Tequila Corrido, an additive-free tequila (only three ingredients, no fake flavors, sold 21+ only). Never accept health claims, serving anyone under 21, or invented prices, margins or sales numbers.
 Customer: ${sc.cust.name}, ${sc.cust.role}. Hidden objection: ${sc.hidden}
 The customer just said: ${step.line}
 The coaching goal for this moment (${step.skill}): ${step.hint}
