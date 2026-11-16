@@ -43,7 +43,8 @@ const LINE = {
   curtainsM: "L92 52C91 60 88 64 84 66C82 54 72 40 60 32C48 40 38 54 36 66C32 64 29 60 28 52",
   curtains: "L92 56C91 64 90 70 88 74C86 58 76 42 60 32C44 42 34 58 32 74C30 70 29 64 28 56",
   updo: "L91 52C88 38 76 28 60 26C44 28 32 38 29 52",
-  taper: "L90 52C90 42 86 34 78 31C66 36 48 34 40 33C34 35 31 42 30 52",
+  // the hair ends at the temples and a textured fringe, so the sides can fade into skin below it
+  taper: "L90 38C88 34 85 31 80 30L77 32L73 29L69 35L65 30L60 33L56 28L51 34L46 31L42 36L38 33C35 33 33 35 31 38",
   spiky: "L90 50C86 40 80 34 72 32C60 36 44 34 36 40C33 43 31 46 30 50",
   curly: "L91 50C86 40 80 32 70 29H50C40 32 34 40 29 50",
   low: "L91 48C85 36 74 30 60 30S35 36 29 48",
@@ -61,7 +62,10 @@ const HAIRS = {
   Messy: (c, f) => ({ front: cap(c, f, LINE.messy, 1.1, 52) }),
   Curtains: (c, f) => ({ front: cap(c, f, LINE.curtainsM, 1.09, 52), deco: '<path d="M60 12L60 32" stroke="#000" stroke-opacity=".2" stroke-width="1.4"/>', clip: true }),
   // the faded sides are clipped to this person's own face, so they stay on the head whatever its shape
-  "Low taper fade": (c, f) => { const id = "fd" + (++capSeq); return { front: cap(c, f, LINE.taper, 1.1, 52) + `<clipPath id="${id}"><path d="${f}"/></clipPath><g clip-path="url(#${id})"><path d="M26 66V40H37L40 56ZM94 66V40H83L80 56Z" fill="${c}" opacity=".32"/><path d="M36 62C37 57 38 54 40 52M84 62C83 57 82 54 80 52" stroke="${c}" stroke-opacity=".4" stroke-width="1.2" fill="none"/></g>` }; },
+  "Low taper fade": (c, f) => {   // a textured top with a high, swept fringe. The hair runs down the temples into a soft, blurred fade that melts into skin by the ears; the fade starts inside the hair so the two are one shape, and it is clipped to this person's own face, so it stays on the head whatever its shape
+    const id = "fd" + (++capSeq), bl = "fb" + capSeq;
+    return { front: cap(c, f, LINE.taper, 1.15, 40) + onHead(f, '<path d="M44 29C48 23 54 20 60 19M57 31C62 24 70 21 77 23M70 29C74 26 79 26 83 29M38 33C40 28 44 25 48 24" stroke="#000" stroke-opacity=".2" stroke-width="1.2" fill="none" stroke-linecap="round"/>', 1.15) + `<defs><clipPath id="${id}"><path d="${f}"/></clipPath><filter id="${bl}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter></defs><g clip-path="url(#${id})"><path d="M20 28H39.5C39 35 37.5 41 36 46C35 50 34 53 33 55H20Z M100 28H80.5C81 35 82.5 41 84 46C85 50 86 53 87 55H100Z" fill="${c}" fill-opacity=".75" filter="url(#${bl})"/></g>` };
+  },
   Spiky: (c, f) => ({ front: cap(c, f, LINE.spiky, 1.07), deco: `<path d="M30 50L27 33L34 36L31 17L42 27L45 7L54 24L60 3L66 24L75 7L78 27L89 17L86 36L93 33L90 50C86 40 80 34 72 32C60 36 44 34 36 40C33 43 31 46 30 50Z" fill="${c}"/><path d="M46 14L49 24M60 10L60 22M74 14L71 24" stroke="#fff" stroke-opacity=".18" stroke-width="1.6" stroke-linecap="round"/>` }),
   "Flat top": (c, f) => ({ front: cap(c, f, LINE.buzz, 1.02, 48), deco: `<path d="M31 48L30 14C30 8 36 6 60 6S90 8 90 14L89 48C86 36 78 28 60 28S34 36 31 48Z" fill="${c}"/>` }),
   Mullet: (c, f) => ({ back: `<path d="M27 58C22 80 26 106 34 120C44 114 54 112 60 112C66 112 76 114 86 120C94 106 98 80 93 58Z" fill="${c}"/>`, front: cap(c, f, LINE.short, 1.09, 54) }),
