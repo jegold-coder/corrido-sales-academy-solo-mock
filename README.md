@@ -23,7 +23,7 @@ What it loads from the internet:
 
 | Brief | In the prototype |
 |---|---|
-| Personas with hidden objections | 13 missions, each customer hides a worry that is revealed on the scorecard |
+| Personas with hidden objections | 16 missions, each customer hides a worry that is revealed on the scorecard |
 | Behavioral chat | Spoken sales-script conversations: the customer talks, you answer out loud (or type), your avatar plays your answer back in your own recorded voice with its mouth moving with the sound, and the customer replies to what you said |
 | Coach mode and hints | A checkbox in the screen before each mission (on by default for Easy missions). With it on, you see what your answer got right and missed right after each answer, before the next question. On Levels 3 and up the checklist is hidden, and a **Show a hint** button gives the same help for 5 XP. Boss battles have neither, so they are scored only at the end |
 | Post-session scorecard | Every answer scored out of 5 at the end: 4 points for what you said (what you mentioned, what you missed, what knocked points off) and 1 for tone, with a stronger answer to compare to and a button to hear yourself again. Plus a delivery score from the camera |
@@ -60,6 +60,8 @@ How scoring works: each answer is worth 5 points. Four are for what you say, spl
 Your voice is recorded on your device with the browser's MediaRecorder so your avatar can play it back and so the tone can be analysed. The recording stays in memory, is never saved or uploaded, and is gone when you leave the results page. If the browser can't record, or you typed, the avatar reads your words aloud and tone is judged from your words only. The pitch and pace checks were tested on synthetic audio, not on real voices, so treat those notes as guidance.
 
 Three missions come from advice from the team's contact Ken. **The Hard No** (Tony): when an owner says no, find a way in by learning who he sells to and what appeals to them. **Know Your Buyer** (Rafael): fit the pitch to the buyer and stay honest. **Trouble at the Store** (Ben): a robbery. The right answers teach staying calm, complying, calling 911, staying with the owner and checking in later. They do not teach physically stopping the robber, because confronting an armed person can get people hurt. Confirm with Ken what they meant by "try to stop it".
+
+Three edge-case missions come from what bar owners told the team about visits that go wrong. **The No-Show** (Kai, a bartender): the manager you booked had to leave for a family emergency. The right answers stay gracious, treat the bartender with respect, never leave a bottle with staff, and rebook with two times to choose from. **Short-Staffed Saturday** (Luisa, a bar manager): two bartenders called out. Read the room, keep it short, find what slows her bar down, and never offer to work behind the bar. **Broken Glass** (Carla, a bar owner): a rack of glasses breaks mid-pitch. Stop the pitch, warn the guests nearby and keep people away, ask if you can help (for example grab a broom) without taking over, then come back the next day before you sell. What the rep should do in Broken Glass is a first draft for Tequila Corrido to adjust to their own field rules.
 
 ## Rank, tier and difficulty (three different words)
 

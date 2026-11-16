@@ -20,6 +20,9 @@ const VOICE_FOR = {
   comply:  { acc: ["en-ZA", "en-GB"], pitch: 1.02, rate: 1.02 },
   hardno:  { acc: ["en-US"], pitch: 0.95, rate: 0.98 },
   mean:    { acc: ["en-US"], pitch: 0.9, rate: 0.9, old: true },
+  noshow:  { acc: ["en-US", "en-CA"], pitch: 1.02, rate: 1.04 },
+  shortstaff: { acc: ["en-US"], pitch: 0.97, rate: 1.12 },
+  glass:   { acc: ["en-GB", "en-AU"], pitch: 1.0, rate: 1.0 },
 };
 const VOICE_DEFAULT = { acc: ["en-US"], pitch: 1, rate: 1 };
 

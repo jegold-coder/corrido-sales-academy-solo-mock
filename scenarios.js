@@ -661,6 +661,23 @@ const LINE_ALTS = {
     3: `"Every rep says the same thing. What makes you different? Do you even know my bar?"`,
     4: `Gus grunts again. "Fine, one bottle. What do you need from me, and by when?"`,
   },
+  noshow: {
+    1: `Kai leans on the bar. "Ordering is all Rosa, I can't sign for anything. But I've got a few minutes, so go ahead. What is it?"`,
+    2: `"How about this: leave a bottle with me and I'll get Rosa to try it when she's back."`,
+    3: `"She'll be slammed when she gets back. What should I pass on?"`,
+    4: `That night a text comes in from Rosa: "I'm so sorry about today, family emergency. Kai says you were really nice about it."`,
+  },
+  shortstaff: {
+    1: `Luisa doesn't stop slicing limes. "Fine. The clock is ticking. What do you need?"`,
+    2: `"Margaritas. Too many steps, and when we're short the tickets just pile up."`,
+    3: `Luisa looks at the printer spitting out tickets. "A tasting tonight? No way. I don't have five minutes."`,
+  },
+  glass: {
+    1: `Carla grabs a bar towel. "Okay, nobody's hurt. Good. My barback is shaken up, and the rush is about to hit."`,
+    2: `The floor is swept. Carla shakes her head. "Half our glassware, right before the rush. Sorry, tequila is the last thing on my mind right now."`,
+    3: `The next day at 3pm you're back. Carla is behind the bar, unboxing a box of new glasses.`,
+    4: `"You didn't make yesterday about yourself. I noticed that. Okay, what have you got?"`,
+  },
 };
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -802,6 +819,174 @@ const MEAN = {
 };
 SCENARIOS.push(QUIET, GAS, MEAN);
 
+// ---------------------------------------------------------------------------------------------------------------
+// Edge cases bar owners told the team about. Things go wrong on a visit: the person you booked isn't there or had to
+// leave for an emergency, the bar is short-staffed, or something breaks mid-pitch. A good rep handles it calmly, keeps
+// people safe, doesn't make it about the sale, and leaves with a clear next step. What the rep should do in the broken
+// glass mission is a first draft for Tequila Corrido to adjust to their own field rules.
+// ---------------------------------------------------------------------------------------------------------------
+const NOSHOW = {
+  id: "noshow", title: "The No-Show", sub: "The manager you booked isn't there", icon: "📅", theme: "bar",
+  cust: { name: "Kai", role: "Bartender", male: false, meter: "Goodwill",
+    look: { skin: "#a8683f", hair: "#1a1410", hairStyle: "Wavy", shirt: "#23201e", top: "jacket", lip: "#8e3a34" } },
+  hidden: `Rosa, the manager, booked you for 2pm but had to leave for a family emergency. Kai can't order anything, but she talks to Rosa every day and Rosa listens to her. Reps who get annoyed, push Kai or leave alcohol behind lose the account. Reps who stay gracious, treat Kai with respect and make it easy to rebook win it.`,
+  win: `Kai put in a good word, and Rosa rebooked with you for Thursday. You turned a missed meeting into goodwill.`,
+  lose: `A missed meeting happens on every route. Stay gracious, respect whoever is there, and leave a clear way to rebook.`,
+  steps: [
+    { skill: "Respect", q: `Respond to Kai.`, hint: `Stay gracious. Say who you are and why you came, show you care that she's okay, and don't complain.`,
+      line: `You walk into the bar at 2pm for your meeting with Rosa, the manager. Kai, the bartender, looks up. "Oh, you're the tequila rep? Rosa had to run out about twenty minutes ago. Family emergency. Didn't she text you?"`,
+      R: [`"No worries at all. I'm with Tequila Corrido, I had a 2pm with Rosa. I hope everything is okay with her family. Is it alright if I leave her a note?"`, `Calm, clear about who you are, kind about her emergency, and a small ask.`],
+      RH: `"That's okay. I'm with Tequila Corrido and I was meeting Rosa at two. I hope her family is alright. Can I leave her a short note?"`,
+      E: [[`"Seriously? I drove forty minutes for this. She could have at least called me."`, `Complaining to Kai about her boss burns the account on the spot.`]],
+      H: [[`"Oh, okay. Can you call her for me? It'll only take a minute and then I won't have to come back."`, `Asking Kai to call a manager in the middle of a family emergency is pushy.`],
+          [`"That's fine. When she's back today, I'll just wait at the bar until she gets in."`, `Waiting around puts pressure on a bar that is already one person down, and she may not be back today.`],
+          [`"Got it, thanks. I'll get out of your way then, I'll figure something out."`, `Leaving with no name, no note and no next step means Rosa never hears you came.`]],
+      reply: { best: `Kai relaxes. "Yeah, she'd appreciate that. A note's fine. She felt bad about it."`, mid: `Kai shrugs. "Uh, sure. I'll tell her someone came by."`, bad: `Kai frowns. "Hey, it was an emergency. Not Rosa's fault."` } },
+    { skill: "Discovery", q: `Use the time well with Kai, without pitching her hard.`, hint: `Kai pours every drink. Ask her what guests order and what she uses now, and keep it short.`,
+      line: `Kai wipes the bar. "I can't order anything, that's all Rosa. But I've got a few minutes if you want to tell me what it is."`,
+      R: [`"Thanks, Kai, I'll keep it short. You pour every drink here, so I'd love your take: what do guests order most, and which tequila goes in your margaritas right now?"`, `Respects Kai's view and asks open questions about the bar before pitching.`],
+      RH: `"I'll be quick. You know this bar better than anyone. What do people order most, and what tequila do you use in the margaritas?"`,
+      E: [[`"Great, so you can just put in an order for two cases and Rosa can sign off later."`, `Kai already said she can't order. Pushing her puts her in a bad spot.`]],
+      H: [[`"Sure. We have four bottles: Blanco, Reposado, Overproof and Añejo. Let me run you through each one."`, `A full pitch to someone who can't buy, with no question about the bar.`],
+          [`"No problem. To be honest I really need to talk to whoever decides, so I'll just come back for Rosa."`, `It tells Kai she doesn't matter, and she talks to Rosa every day.`],
+          [`"Cool. Do you know how much your bar spends on tequila each month, and what you pay per bottle now?"`, `Asking a bartender for the bar's spending is the wrong question for the wrong person.`]],
+      reply: { best: `"Mostly margaritas, and some people sip after dinner. We use the cheap stuff in the well. Rosa wants something better but hasn't found it."`, mid: `"Margaritas, I guess. Ask Rosa about the rest."`, bad: `"Like I said, I don't do the ordering."` } },
+    { skill: "Compliance", q: `Answer Kai's offer.`, hint: `Never leave alcohol with staff. Decline politely and offer something else to leave, plus a tasting with Rosa there.`,
+      line: `"Tell you what, leave a bottle with me. I'll make sure Rosa tries it when she's back."`,
+      R: [`"That's kind, but I can't leave a bottle without the manager here. I'll leave my card and a one-page sheet for Rosa, and bring a tasting when she's in."`, `Politely declines to leave alcohol, leaves the right things and plans a proper tasting.`],
+      RH: `"Thanks, but I can't leave alcohol without the manager. Here's my card and a short info sheet for Rosa. I'll pour a tasting when she's here."`,
+      E: [[`"Sure, here you go. Keep it in the back so nobody else sees it."`, `Leaving alcohol behind and hiding it breaks the rules.`]],
+      H: [[`"Perfect, I'll leave the Blanco with you. Just ask Rosa to text me what she thinks of it."`, `Never leave alcohol with staff, however well meant.`],
+          [`"Sure, and pour yourself a taste too, so you can tell her what you think."`, `Leaving alcohol and inviting staff to drink it breaks two rules.`],
+          [`"Thanks, Kai, appreciate it. Here's my card, and let her know I came by when she's back."`, `It quietly skips the bottle question and leaves no plan for a tasting with Rosa.`]],
+      reply: { best: `"Fair enough, rules are rules. I'll put the sheet by the register where she'll see it."`, mid: `"Okay, I'll pass it along."`, bad: `"Uh, I don't think Rosa would like that."` } },
+    { skill: "Finding the decision-maker", q: `Find the best way to reach Rosa.`, hint: `Ask how and when she likes to be reached, and offer two specific times. Don't ask for personal details.`,
+      line: `"She's slammed when she gets back. What do you want me to tell her?"`,
+      R: [`"Just that I came by and I hope her family is okay. What's the best way to reach her, text or the bar phone? I could do Thursday at 3 or Friday at 11, whichever suits her."`, `Asks the right way to reach her and makes rebooking easy with two times.`],
+      RH: `"Tell her I hope all is well. How does she like to be reached? I can come back Thursday at three or Friday at eleven, her pick."`,
+      E: [[`"Give me her personal cell and her home address, and I'll sort it out with her directly."`, `Asking staff for a manager's personal details crosses a line.`]],
+      H: [[`"Tell her I'll swing by whenever I'm in the area, and we'll catch each other eventually."`, `No time and no plan, so the meeting never gets rebooked.`],
+          [`"Tell her I'll be back tomorrow at 2pm, same time, and she should be here for it this time."`, `It dictates a time and has a dig in it, right after her emergency.`],
+          [`"Just tell her the tequila rep came by. She has my email somewhere, I think."`, `Vague, and it leaves all the work of rebooking to her.`]],
+      reply: { best: `"Text is best, she lives on her phone. I'll tell her Thursday or Friday."`, mid: `"I'll tell her you came by. She'll find you."`, bad: `"I'm not giving out her stuff, sorry."` } },
+    { skill: "Follow-through", q: `Reply to Rosa's text.`, hint: `Short and kind. No guilt, no pitch. Offer the two times and let her choose.`,
+      line: `That evening Rosa texts you: "So sorry about today, family emergency. Kai said you were great about it."`,
+      R: [`"No need to apologize, Rosa. I hope your family is okay. Whenever you're ready, I can come Thursday at 3 or Friday at 11 for a quick tasting. Your call."`, `Kind, no guilt, and an easy next step with two times.`],
+      RH: `"Please don't worry about it. I hope everyone is alright. I can come by Thursday at three or Friday at eleven for a short tasting. Whatever works for you."`,
+      E: [[`"No problem, though I did lose an afternoon. Can we lock in a two-case order to make up for it?"`, `Guilt and a pressure close in the same message.`]],
+      H: [[`"No worries! Anyway, here's our whole price list and four product sheets. Let me know which bottles you want."`, `It skips her emergency and turns a kind text into a sales dump.`],
+          [`"All good. Let me know when you're free sometime and we'll figure it out."`, `Kind, but no time, so it puts the work back on her.`],
+          [`"It's fine. Just please confirm next time if you can't make it, since my schedule is pretty tight."`, `A lecture right after a family emergency.`]],
+      reply: { best: `"Thank you, that means a lot. Thursday at 3 works. See you then."`, mid: `"Thanks. I'll get back to you when things calm down."`, bad: `"Okay. I'll let you know."` } },
+  ],
+};
+
+const SHORTSTAFF = {
+  id: "shortstaff", title: "Short-Staffed Saturday", sub: "A bar manager running on empty", icon: "🧯", theme: "bar",
+  cust: { name: "Luisa", role: "Bar manager", male: false, meter: "Patience",
+    look: { skin: "#c68b5e", hair: "#2a1810", hairStyle: "Ponytail", shirt: "#7a2a3a", top: "jacket", lip: "#8e3a34" } },
+  hidden: `Two of Luisa's bartenders called out and she is running the bar and the floor alone. She doesn't hate reps, she hates reps who add to her day. Read the room, keep it short, find out what slows her bar down, and offer to come back when it's calm. Never offer to work behind her bar.`,
+  win: `Luisa booked a ten-minute tasting for Tuesday afternoon. You made her day easier, not harder.`,
+  lose: `Luisa had no room for you today. On a short-staffed day, be quick, be useful and come back when it's calm.`,
+  steps: [
+    { skill: "Reading the room", q: `Respond to Luisa.`, hint: `See how busy she is. Say who you are in one line and offer her a choice: one minute now or a better time.`,
+      line: `It's Saturday at 5pm. Luisa is pouring drinks with one hand and waving a server over with the other. "Two of my bartenders called out and I'm running the bar and the floor. You picked a bad day."`,
+      R: [`"I can see that, Luisa. I'm with Tequila Corrido. I can give you one minute now, or come back at a better time this week. Which is easier for you?"`, `Reads the room, says who you are and lets her choose.`],
+      RH: `"Looks like a rough one. I'm with Tequila Corrido. One minute now, or I come back another day this week. Your call."`,
+      E: [[`"No problem, this won't take long. Let me walk you through all four of our bottles."`, `A full pitch in the middle of a rush ignores everything she just said.`]],
+      H: [[`"Sorry, sorry, I'll get out of your way. I know reps are the last thing you need."`, `Grovelling, and it leaves without saying who you are or what's next.`],
+          [`"Totally get it. While you work, let me tell you about our Blanco and the cocktails it's great in."`, `Pitching while she works means you didn't hear her.`],
+          [`"I can jump behind the bar and help you out tonight if you want. Then we can talk after."`, `Kind, but a rep can't work behind a bar: it raises license and insurance problems.`]],
+      reply: { best: `Luisa exhales. "One minute. I'm cutting limes anyway. Go."`, mid: `"Uh, okay, but make it fast."`, bad: `"Not now, man. Seriously."` } },
+    { skill: "Discovery", q: `Find out what makes her short-staffed nights hard.`, hint: `Ask one sharp question about what slows her bar down. Listen before you pitch.`,
+      line: `Luisa keeps cutting limes. "Okay. Clock's running. What do you want?"`,
+      R: [`"Quick question first: when you're short like tonight, which drinks slow the bar down the most? I'd rather fit what you already pour than add work."`, `One sharp question about her bar, and a promise not to add work.`],
+      RH: `"One question. On nights like this, which drinks take your team the longest? I want to fit what you do, not add to it."`,
+      E: [[`"I want you to put Corrido on your menu tonight. It's the best tequila around."`, `A demand and hype, with no question about her bar.`]],
+      H: [[`"Corrido is additive-free, with only three ingredients and no fake flavors. Want to taste it?"`, `A true fact, but it pitches before learning anything about her bar.`],
+          [`"How many covers do you do on a Saturday, and what's your average spend per guest?"`, `Business numbers she has no time to look up mid-rush.`],
+          [`"Have you thought about hiring more staff? A short team like this is going to cost you guests."`, `Unasked-for advice about her staffing, which is not your business.`]],
+      reply: { best: `"Margaritas. Too many steps, and when I'm short it's a pile of tickets."`, mid: `"Everything's slow tonight, man."`, bad: `"I don't have time for questions."` } },
+    { skill: "Audience fit", q: `Show how Corrido fits her problem.`, hint: `Tie one true fact to a simple margarita her team can make, and don't invent claims.`,
+      line: `"Margaritas. Too many steps, and when I'm short it's a pile of tickets."`,
+      R: [`"That makes sense. Corrido is additive-free with only three ingredients, so a simple margarita of Corrido Blanco, lime and agave stays clean and easy for your team to make."`, `One true fact tied to her margarita problem, with no invented claims.`],
+      RH: `"Got it. Corrido has only three ingredients and no fake flavors, so a simple margarita, Blanco plus lime and agave, is easy for your team and tastes clean."`,
+      E: [[`"Corrido is smoother and healthier, so your guests will drink more and feel better tomorrow."`, `A health claim, which you can never make.`]],
+      H: [[`"Perfect. Let me design you a menu of eight new tequila cocktails and train your whole team on it."`, `Eight new drinks is more work, the opposite of what she needs.`],
+          [`"Easy fix: switch your whole well to Corrido tonight and the margaritas will sell themselves."`, `A big, rushed change with an unprovable promise.`],
+          [`"Corrido is a premium tequila, the best you can get. Your guests will notice the difference right away."`, `Hype with no fact and no tie to her problem.`]],
+      reply: { best: `"Three ingredients, simple build. Okay, that's actually useful."`, mid: `"Maybe. Everyone says their stuff is easy."`, bad: `"That just sounds like more work for me."` } },
+    { skill: "Closing", q: `Suggest a next step that respects her day.`, hint: `A short tasting on a quiet day, with a specific time, and a thank you.`,
+      line: `Luisa glances at the ticket printer. "I can't do a tasting tonight. I don't have five minutes to spare."`,
+      R: [`"Of course. How about Tuesday at 3, when it's quiet? Ten minutes, I'll pour it for you and whoever is on. Thanks for the minute tonight, Luisa."`, `A quiet day, a specific time, short, and a thank you.`],
+      RH: `"No problem. Could I come Tuesday at three when it's calm? Ten minutes, a quick pour for you and your team. Thanks for squeezing me in."`,
+      E: [[`"Just one quick pour now, it takes thirty seconds, and then you can decide on an order."`, `She just said no to tonight. Pushing anyway is pressure.`]],
+      H: [[`"No problem, I'll swing by sometime next week when things calm down for you."`, `No day and no time, so it never happens.`],
+          [`"Sure. I'll leave a bottle here so you can try it after close, and I'll call you Monday."`, `Never leave alcohol without a proper tasting with the manager.`],
+          [`"Okay. I'll come back Saturday at the same time, so I can see the bar when it's busy."`, `Saturday at five is the worst time to come back.`]],
+      reply: { best: `"Tuesday at three. Ten minutes. Deal. Thanks for reading the room."`, mid: `"Maybe. Text me."`, bad: `"I'll call you. Maybe."` } },
+  ],
+};
+
+// Broken glass mid-pitch. Like Trouble at the Store, the point is safety first and not making it about the sale. Nothing
+// here is graphic. What the rep should do is a first draft: Tequila Corrido can change it to match their own field rules.
+const GLASS = {
+  id: "glass", title: "Broken Glass", sub: "Something breaks mid-pitch", icon: "🥃", theme: "bar",
+  cust: { name: "Carla", role: "Bar owner", male: false, meter: "Trust in you",
+    look: { skin: "#d19a6c", hair: "#3b2418", hairStyle: "Bun", shirt: "#2f3b52", top: "blazer", lip: "#a23b3b" } },
+  hidden: `Carla is watching how you act when something goes wrong in her bar. Reps who stop, keep guests away from the glass and ask how they can help, without taking over or selling, earn her trust. Coming back the next day, briefly and without a pitch, is what wins the account.`,
+  win: `Carla remembered who stopped and helped. She heard your pitch the next day and booked a tasting.`,
+  lose: `This one is about safety first and not making it about the sale. Review the notes and try again.`,
+  steps: [
+    { skill: "Safety", q: `What do you do?`, hint: `Stop the pitch. Warn the guests nearby and keep people back from the glass. Don't pick it up with your hands.`,
+      line: `You're mid-pitch with Carla at the end of the bar when her barback drops a full rack of glasses. Glass skids across the floor right next to a table of guests.`,
+      R: [`Stop talking, warn the guests at the next table to stay back and watch their step, and keep people away from the glass until it's cleaned up.`, `Stops the pitch, warns the guests and keeps people clear of the glass.`],
+      RH: `Pause the pitch, tell the guests nearby to stay where they are and mind the glass, and keep people away from it until it's swept.`,
+      E: [[`Keep going with the pitch. It's her staff's mess, and stopping would lose your momentum.`, `Carrying on while guests are near broken glass shows you don't care about her bar.`]],
+      H: [[`Kneel down and start picking up the big pieces with your hands so nobody steps on them.`, `Picking up glass by hand is how people get cut.`],
+          [`Pull out your phone and film it, since it's a funny story for your team later.`, `Filming her bar's bad moment loses her trust.`],
+          [`Shout for everyone in the bar to leave the area right now, so the floor is clear.`, `Shouting at every guest causes panic when a calm warning is enough.`]],
+      reply: { best: `Carla is already moving. "Thank you. Everyone okay? Nobody move, give us a second."`, mid: `Carla: "Okay. Okay, nobody's hurt."`, bad: `Carla, sharply: "Hang on, can we stop for a second?"` } },
+    { skill: "Support", q: `How do you help?`, hint: `Ask what would help, like grabbing a broom. Don't take over and don't touch the glass with your hands.`,
+      line: `Carla grabs a towel. "Nobody's hurt. Great. My barback is shaking, and it's about to get busy."`,
+      R: [`Ask Carla if you can help, for example by grabbing the broom and dustpan or keeping guests back while her team cleans up, and let her decide.`, `Offers specific help and lets her stay in charge.`],
+      RH: `Ask Carla what would help most: should you grab a broom and dustpan, or keep guests away while her team sweeps up? Then do what she says.`,
+      E: [[`Take over: tell the barback what to do, move the guests yourself and start running the cleanup.`, `Taking over in her bar oversteps. Ask what she needs.`]],
+      H: [[`Go behind the bar and start re-racking the clean glasses so they're ready for the rush.`, `Going behind her bar uninvited is not your place.`],
+          [`Wait quietly at the end of the bar so you're out of the way, then pick up the pitch when she's done.`, `Out of the way, but no offer of help and straight back to selling.`],
+          [`Tell the barback it's fine and that it happens to everyone, then go back to talking with Carla.`, `Kind words, but no real help for Carla.`]],
+      reply: { best: `Carla points. "Broom's in the closet by the kitchen. Thank you."`, mid: `"I've got it, I think. Thanks."`, bad: `"Please, just let us handle it."` } },
+    { skill: "Reading the room", q: `What do you say now?`, hint: `No pitch. Show you get it, and offer to come back at a better time.`,
+      line: `The floor is clear. Carla sighs. "That was half our glassware, right before the rush. I'm sorry, I can't think about tequila right now."`,
+      R: [`"Of course, don't apologize. You've got a rush to handle. Could I come back tomorrow afternoon, around 3, to finish our chat? I'll keep it short."`, `No pitch, understands her day and books a better time.`],
+      RH: `"No need to be sorry, you have a rush coming. Can I come back tomorrow at three to finish up? It'll be quick."`,
+      E: [[`"Actually, this is the perfect time. Order today and I'll throw in branded glasses for free."`, `Using her bad moment to sell, and gifts to a bar can break the rules.`]],
+      H: [[`"No worries. Let me just finish the last two minutes of my pitch, it won't take long."`, `She just said she can't think about it. Two more minutes is not listening.`],
+          [`"Understood. I'll bring a free case of Corrido glasses tomorrow to help you get through the week."`, `Free gifts to a bar can break alcohol rules, and it turns help into a sales move.`],
+          [`"Got it. I'll get out of your way, and just call me whenever you want to talk again."`, `Gracious, but no plan, so it puts all the work on her.`]],
+      reply: { best: `"Tomorrow at three. Yes. Thank you for being decent about this."`, mid: `"Maybe. Call me."`, bad: `"I said not now."` } },
+    { skill: "Follow-up", q: `What do you say when you walk in the next day?`, hint: `Check in like a person first. Ask how the night went, then ask if now is still a good time.`,
+      line: `The next day at 3pm you walk back in. Carla is behind the bar, unpacking a box of new glasses.`,
+      R: [`"Hi Carla. How did last night go after all that? Is your barback okay? If now is still a good time, I'd love ten minutes to finish our chat."`, `A real check-in first, then a short, polite ask.`],
+      RH: `"Hey Carla, how was the rush after yesterday? Everyone alright? If you still have ten minutes, I'd like to finish where we left off."`,
+      E: [[`"Okay, where were we? So, about that first order. How many cases do you want?"`, `Straight to the order, as if yesterday never happened.`]],
+      H: [[`"Hi! I brought the full lineup and the price sheets, so let's go through all four bottles now."`, `No check-in, and a big pitch she didn't agree to.`],
+          [`"Hi Carla. Bet last night was a nightmare. Your barback really messed things up for you, huh?"`, `It puts down her staff, which she won't forget.`],
+          [`"Hi, sorry to bother you again. I know yesterday was a lot, so I'll keep this really, really fast."`, `Grovelling, with no real check-in.`]],
+      reply: { best: `Carla smiles. "We survived. He's fine, he's laughing about it now. Okay, ten minutes. Go."`, mid: `"It was fine. What did you want to show me?"`, bad: `"Let's just get this over with."` } },
+    { skill: "Closing", q: `Finish the pitch with a small next step.`, hint: `One true fact, tied to her bar, then a small tasting with a day and time.`,
+      line: `"You didn't make yesterday about you. I noticed. So, what have you got?"`,
+      R: [`"Thanks, Carla. Corrido is additive-free with only three ingredients, so it makes a clean margarita. Could I pour a tasting for you and your team on Thursday at 4? If you like it, we start small."`, `One true fact, tied to her bar, and a small step with a day and time.`],
+      RH: `"Thank you. Corrido has three ingredients and no fake flavors, great for a clean margarita. Can I bring a tasting for you and your team Thursday at four? If it works, we start small."`,
+      E: [[`"Great. After yesterday, I think you owe me a big first order, so let's do five cases."`, `Calling in a favor destroys the trust you just earned.`]],
+      H: [[`"It's the smoothest tequila out there, and your guests will feel better the next morning too."`, `A health claim, and hype instead of a fact.`],
+          [`"Corrido is additive-free with three ingredients. I'll email you some info and you decide whenever."`, `A good fact, but no day and no next step.`],
+          [`"I'd suggest the full lineup across your whole bar menu, starting this weekend, all four bottles."`, `Far too big for a first step.`]],
+      reply: { best: `"Thursday at four. Bring it. I'll have my team here."`, mid: `"Maybe. Send me something first."`, bad: `"That's a lot. Let me think."` } },
+  ],
+};
+SCENARIOS.push(NOSHOW, SHORTSTAFF, GLASS);
+
 // How hard each mission is, from 1 (easiest) to 5. This sets the pass mark, the answer time limit, how warm the customer
 // starts and whether you see what a good answer should include before you record.
 const MLEVEL = {
@@ -811,7 +996,7 @@ const MLEVEL = {
   4: { name: "Hard", pass: 3.5, secs: 60, start: [35, 25, 25], tips: false, mult: 1.6, blurb: "A tough customer, no checklist and a shorter answer time." },
   5: { name: "Expert", pass: 3.8, secs: 60, start: [25, 20, 20], tips: false, mult: 2, blurb: "The toughest customers. Mistakes cost more and the pass mark is high." },
 };
-const LEVEL_OF = { quiet: 1, priya: 1, sam: 2, mia: 2, buyer: 3, gas: 3, dana: 4, marco: 4, ray: 4, stickup: 4, comply: 5, hardno: 5, mean: 5 };
+const LEVEL_OF = { quiet: 1, priya: 1, sam: 2, mia: 2, buyer: 3, gas: 3, dana: 4, marco: 4, ray: 4, stickup: 4, comply: 5, hardno: 5, mean: 5, noshow: 2, shortstaff: 3, glass: 4 };
 SCENARIOS.forEach(m => { m.level = LEVEL_OF[m.id] || 3; });
 
 // What a customer says when your answer was only okay (a score between 2.5 and 3.9), one line per step.
@@ -845,4 +1030,7 @@ const TONE_FOR = {
   comply:  { name: "firm but polite", firm: true, warm: true, pace: [115, 165], cue: "You have to say no, clearly and politely." },
   hardno:  { name: "respectful and persistent", pace: [115, 170], cue: "Stay respectful. Don't beg and don't push." },
   mean:    { name: "calm and steady", steady: true, firm: true, pace: [115, 165], cue: "Don't snap back and don't grovel. Stay calm and even." },
+  noshow:  { name: "gracious and easygoing", warm: true, steady: true, pace: [110, 165], cue: "A missed meeting isn't Kai's fault. Sound relaxed, kind and unbothered." },
+  shortstaff: { name: "quick and considerate", warm: true, pace: [125, 180], cue: "She's swamped. Be brief, warm and to the point." },
+  glass:   { name: "calm and helpful", steady: true, warm: true, pace: [95, 150], cue: "Something just broke. Keep your voice calm and low, and put people first." },
 };

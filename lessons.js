@@ -58,7 +58,7 @@ const LESSONS = [
 // Path order on the map: lessons are mixed in between missions.
 // Both lessons come first, then the Brand Brain boss, then missions from easiest to hardest (see LEVEL_OF in scenarios.js).
 // Boss battles are at the end of each tier: Brand Brain, Priya, Mia, Rafael, Dana and the Bad-Tempered Owner (see BOSSES in tiers.js).
-const PATH = ["brand", "lineup", "brandbrain", "quiet", "priya", "sam", "mia", "gas", "buyer", "marco", "ray", "stickup", "dana", "comply", "hardno", "mean"];
+const PATH = ["brand", "lineup", "brandbrain", "quiet", "priya", "sam", "noshow", "mia", "gas", "shortstaff", "buyer", "marco", "ray", "stickup", "glass", "dana", "comply", "hardno", "mean"];
 
 // Answer choices for a question at the current difficulty (state.diff): 3 options on Easy and Medium, 4 on Hard.
 function choicesFor(q, diff) {
