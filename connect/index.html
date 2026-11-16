@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Corrido Connect (local prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Rye&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="connect.css?v=3">
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<div class="mock">CLASS PROJECT PROTOTYPE · NOT FINAL · NOT AN OFFICIAL TEQUILA CORRIDO PRODUCT</div>
+<header class="top">
+  <div class="brandrow">
+    <h1 class="logo"><img class="brandlogo" src="https://ilovetequilacorrido.com/cdn/shop/files/tequila-corrido-logo-wht.png?v=1723729407" width="735" height="325" alt="Tequila Corrido" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('nologo')"><span class="brandtext">Tequila Corrido</span><small>Corrido Connect</small></h1>
+    <a class="back" href="../index.html">← Sales Academy</a>
+  </div>
+  <div class="roles" role="group" aria-label="Demo role (no sign-in needed)">
+    <span class="lbl">Demo role:</span>
+    <button type="button" data-role="marketing">Marketing</button>
+    <button type="button" data-role="sales">Sales</button>
+    <button type="button" data-role="manager">Manager</button>
+    <label id="repWrap" class="rep">Rep <select id="repSel" aria-label="Which sales rep you are playing"></select></label>
+    <button type="button" id="resetBtn" class="ghost" title="Delete this browser's demo data and start over">Reset demo data</button>
+  </div>
+  <nav id="nav" aria-label="Corrido Connect"></nav>
+</header>
+<div class="banner" id="banner" role="note">Fictional leads and companies only. Nothing here connects to a real CRM, database or login. Data lives in this browser.</div>
+<main id="app" tabindex="-1"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="connect-core.js?v=1"></script>
+<script src="connect-ui.js?v=1"></script>
+</body>
+</html>

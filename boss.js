@@ -159,12 +159,14 @@ function tierUp(ctx) {
     <div class="tu-rewards">${rewardBlock}${bonus ? `<div class="rwcard"><small>REWARD</small><b>+${bonus} XP</b></div>` : `<div class="rwcard"><small>REPLAY</small><b>No new reward</b></div>`}</div>
     ${badgeBlock}
     ${final && first ? '<p class="tu-legend">Legend frame unlocked: your avatar now wears a gold frame.</p>' : ""}
+    ${final ? '<button class="btn" id="connectnext" type="button">Next step: take it to Corrido Connect</button><p class="note2" style="color:var(--gold-t)">Corrido Connect is where marketing and sales hand leads to each other.</p>' : ""}
     <button class="btn tealbtn" id="share" type="button">⤴ Share my tier card</button>
     ${ctx.showScorecard ? '<button class="linkbtn" id="score" type="button">See my scorecard</button>' : ""}
     <button class="linkbtn" id="season" type="button">Back to the season</button>
     <p class="note2 tu-foot">Tier cards show your name, avatar and tier only.</p></section>`;
   confetti($("#tierup"));
   $("#share").onclick = () => shareTierCard(tierTo);
+  if ($("#connectnext")) $("#connectnext").onclick = () => { location.href = "connect/index.html"; };
   if ($("#score")) $("#score").onclick = ctx.showScorecard;
   $("#season").onclick = home;
   Sound.stop(); Sound.sfx(final ? "season" : "tierup"); setTimeout(() => { if ($("#tierup")) Sound.sfx("badge"); }, 2600); window.scrollTo(0, 0);

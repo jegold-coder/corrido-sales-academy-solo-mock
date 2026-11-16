@@ -59,7 +59,7 @@ function home() {
     ${nb && nbStop ? `<div class="sidecard bosscard"><h3>Next boss</h3><div class="bigface">${bossFace(nbStop) || '<span class="bface brain">🧠</span>'}</div><b class="rn">${nbSc ? esc(nbSc.cust.name) : "Brand Brain"}</b><span class="rt">${nbSc ? esc(nbSc.cust.role) : "Ten timed questions"}</span>
       <p>Tier ${nb.tier} boss. Win to become ${aTier(Math.min(5, nb.tier + 1))}.</p><small>${nb.quiz ? `${Math.round(nb.pass * 100)}% or better to win` : `${nb.pass.toFixed(1)} out of 5 on average to win${nb.voice ? ", voice only" : ""}`}</small>
       <button class="btn" id="sidefight" type="button" ${nbOpen ? "" : "disabled"}>${nbOpen ? "See the battle" : "Locked"}</button></div>`
-      : '<div class="sidecard"><h3>Season complete</h3><p>You have beaten every boss.</p></div>'}
+      : '<div class="sidecard"><h3>Season complete</h3><p>You have beaten every boss.</p><a class="btn" href="connect/index.html" style="display:inline-block;margin-top:.5rem;text-decoration:none">Next step: Corrido Connect</a></div>'}
     <div class="sidecard go" data-go="badges" role="link" tabindex="0" title="Open your badges"><h3>Boss badges</h3>${bossBadgeRow()}<small>${state.badges.filter(k => k.startsWith("boss-")).length} of 6 earned</small><em class="goto">All badges ›</em></div></aside>`;
   // A tier banner hangs 120px above its first stop so the START tag fits between them. Tier 0 has no stop above it to bump into, so its banner sits 26px from the top of the map.
   const bandUp = (f, t) => (t === 0 ? TOP - 26 : 120);

@@ -141,9 +141,10 @@ const Presenter = (() => {
       ["Results: not this time", () => autoplay("marco", "RHEHR", { through: "quiet" })], ["Boss intro", () => bossIntro(stop("priya"))],
       ["Brand Brain boss", () => bossIntro(stop("brandbrain"))], ["Boss lost", () => autoplay("mia", "E", { through: "sam", boss: true })],
       ["Tier Up", () => autoplay("priya", "R", { through: "quiet", boss: true })],
+      ["Finish screen: Season complete", () => autoplay("mean", "R", { through: PATH[PATH.indexOf("mean") - 1], boss: true })],
     ]],
     ["Dashboard and more", [...tabs.map(([l, t]) => ["Dashboard: " + l, () => dashboard(t)]), ["Character", () => creator(home)], ["Who is Tequila Corrido?", () => explorer()]]],
-    ["Manager", mgr.map(([l, t]) => ["Manager: " + l, () => managerMode(t), true])],
+    ["Manager", [...mgr.map(([l, t]) => ["Manager: " + l, () => managerMode(t), true]), ["Manager: Connect (opens in a new tab)", () => window.open("connect/index.html", "_blank", "noopener"), true]]],
     ["Avatar check", [["Shirts: arms and sleeves", () => AvatarCheck.show("sleeves")], ["Shirts: neck and collar", () => AvatarCheck.show("necks")], ["Shirts: bottom of the preview", () => AvatarCheck.show("bottoms")], ["Hair on every head shape", () => AvatarCheck.show("hair")]]],
   ];
   function busy(on) { const b = q("#prbtn"); if (b) { b.disabled = on; b.querySelector("small").textContent = on ? "playing a sample…" : "sample data"; } }

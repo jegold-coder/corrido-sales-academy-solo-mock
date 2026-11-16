@@ -34,12 +34,12 @@ function managerMode(tab) {
   const pages = [["cohorts", "Cohorts"], ["coaching", "Coaching"], ["answers", "Answers"], ["assign", "Assign"], ["facts", "Brand facts"], ["invite", "Invite"], ["leaderboards", "Leaderboards"], ["grader", "Grader"]];
   app.innerHTML = `<div class="mgrwrap">
     <div class="mgrbar"><div class="mlogo"><img class="brandlogo" src="https://ilovetequilacorrido.com/cdn/shop/files/tequila-corrido-logo-wht.png?v=1723729407" width="735" height="325" alt="" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('nologo')"><span class="brandtext">Tequila Corrido</span><small>SALES ACADEMY<span class="mdot" aria-hidden="true">·</span><span class="mrole">Manager</span></small></div>
-      <nav class="mnav" aria-label="Manager pages">${pages.map(([k, l]) => `<button type="button" class="mnavbtn ${k === mgrTab ? "on" : ""}" data-p="${k}" ${k === mgrTab ? 'aria-current="page"' : ""}>${l}</button>`).join("")}</nav>
+      <nav class="mnav" aria-label="Manager pages">${pages.map(([k, l]) => `<button type="button" class="mnavbtn ${k === mgrTab ? "on" : ""}" data-p="${k}" ${k === mgrTab ? 'aria-current="page"' : ""}>${l}</button>`).join("")}<a class="mnavbtn mlink" href="connect/index.html" title="Open Corrido Connect, the marketing-to-sales handoff">Connect</a></nav>
       <div class="muser">${state.mgrName && state.mgrName !== "Manager" ? `<span>${esc(state.mgrName)}</span>` : ""}<button type="button" class="mback" id="mback" aria-label="Back to the game">← <span class="mbtext">Back to the game</span></button></div></div>
     <div class="mgrpage">
     <p class="mproto" role="note"><b>Prototype.</b> Manager mode is open to anyone with the link, and the class below is sample data. Nothing here is saved to a server.</p>
     <div id="mbody"></div></div></div>`;   // the bar runs edge to edge; mgrpage is the column under it
-  app.querySelectorAll(".mnavbtn").forEach(b => b.onclick = () => managerMode(b.dataset.p));
+  app.querySelectorAll(".mnavbtn[data-p]").forEach(b => b.onclick = () => managerMode(b.dataset.p));
   $("#mback").onclick = leaveManager;
   ({ cohorts: mgrCohorts, coaching: mgrCoaching, answers: mgrAnswers, assign: mgrAssign, facts: mgrFacts, invite: mgrInvite, leaderboards: mgrBoards, grader: mgrGrader })[mgrTab]($("#mbody"));
   window.scrollTo(0, 0);
