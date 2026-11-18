@@ -52,7 +52,7 @@ const CallCard = (() => {
   function review() {
     const R = Facts.review(), F = Facts.get();
     return `<div class="card"><h3>Say it in one line</h3><p>${promiseLine(R.promise)}</p>
-        <ul class="xlist"><li><b>The name:</b> a corrido is a Mexican ballad. The brand borrows its music-and-rebellion spirit.</li><li><b>The place:</b> tied to Mexico's tequila heartland.</li><li><b>No famous fans:</b> the tequila does the talking, so never claim any.</li></ul></div>
+        <ul class="xlist"><li><b>The name:</b> a corrido is a Mexican ballad. The brand borrows its music-and-rebellion spirit.</li><li><b>The promise:</b> additive-free, only three ingredients, no fake flavors.</li><li><b>No famous fans:</b> the tequila does the talking, so never claim any.</li></ul></div>
       <div class="card"><h3>Who am I talking to?</h3><ul class="xlist">${BUYERS.map(([n, who, cares, win]) => `<li><b>${n}</b> <small>(${who})</small>: cares about ${cares}. ${win}</li>`).join("")}</ul></div>
       <div class="card"><h3>The four bottles</h3><div class="xlineup">${LINEUP.map(([n, pr, notes, handle, img]) => `<a class="xbottle" href="${SHOP_URL}${handle}" target="_blank" rel="noopener noreferrer"><img src="${IMG}${img}" alt="A bottle of Tequila Corrido ${n}" loading="lazy"><div class="xtext"><b>${n}</b><span class="xprice">${pr}</span><small>${notes}</small><em>Shop page ↗</em></div><span class="sr"> (opens in a new tab)</span></a>`).join("")}</div>
         <p class="note2">These are the public shop prices. Wholesale terms aren't public, so say you'll confirm them in writing.${F.checked ? ` Prices last checked ${Facts.dateLabel(F.checked)}.` : ""}</p></div>

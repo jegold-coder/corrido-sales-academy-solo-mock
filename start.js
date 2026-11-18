@@ -5,7 +5,7 @@ const FACTS = [
   "Tequila Corrido is celebrity-free. The site says it's not about flashy endorsements, so the tequila does the talking.",
   "Tequila Corrido's lineup runs Blanco $44.99, Reposado $54.99, Overproof $56.99 and Añejo $89.99, all additive-free.",
   "The brand's promise is only three ingredients and no fake flavors.",
-  "The brand ties itself to Mexico's tequila heartland.",
+  "Every Tequila Corrido bottle is additive-free, from the Blanco to the Añejo.",
   "The name comes from the corrido, a traditional Mexican ballad.",
   "Tequila Corrido is for guests 21 and over only.",
 ];

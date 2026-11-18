@@ -151,7 +151,7 @@ const CRITERIA = {
   "ray:1": {
     need: [[/(additive|three ingredients|no fake)/i, "one real difference"],
            [/(taste|side by side|try|next to|pour them|compare)/i, "invite him to taste"],
-           [/(only|one thing|honestly)/i, "keep it honest and specific"]],
+           [/(one of the first|only|one thing|honestly)/i, "keep it honest and specific"]],
     bad: [[/(simply better|cooler bottle|smoother|bartenders love|more care than)/i, "That's subjective or unprovable. Name a true difference."],
           [/(more options than|four expressions give)/i, "Range is nice but doesn't answer 'what's different'."]] },
   "ray:2": {
@@ -273,7 +273,7 @@ const CRITERIA = {
            [/(owner here|whoever buys)/i, "She's the owner. Read the room."]] },
   "buyer:1": {
     need: [[/(named for|name comes from|corrido ballad|ballad|the corrido)/i, "the corrido name"],
-           [/(additive|three ingredients|no fake)/i, "additive-free"],
+           [/(additive|three ingredients|no fake)/i, "additive-free, with only three ingredients"],
            [/(celebrit)/i, "celebrity-free"]],
     bad: [[/(family recipe|generations)/i, "A made-up story. She will see through it."],
            [/(handcrafted|small batches)/i, "Details the brand doesn't claim."],
